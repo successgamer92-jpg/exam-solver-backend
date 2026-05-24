@@ -133,7 +133,7 @@
             pointer-events: none;
         }
 
-        /* High-Definition Executive Studio Template for Clean PDF Layout */
+        /* Premium Standard Layout for Crisp Sheet & PDF Export */
         #output {
             background: #ffffff;
             padding: 45px;
@@ -146,25 +146,27 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        /* Advanced HTML Structural Resets from Marked Parser */
+        /* HTML Element Mappings Generated via Marked Engine */
         #output h1, #output h2, #output h3 {
             color: #1e3a8a;
-            margin-top: 30px;
+            margin-top: 35px;
             margin-bottom: 15px;
             font-weight: 700;
             padding-bottom: 6px;
-            border-bottom: 1px dashed #cbd5e1;
+            border-bottom: 2px solid #3b82f6;
         }
-        #output p { color: #334155; margin-bottom: 16px; text-align: justify; }
+        #output p { color: #2c3e50; margin-bottom: 16px; text-align: justify; }
         #output ul, #output ol { margin-bottom: 18px; padding-left: 22px; }
-        #output li { margin-bottom: 6px; }
+        #output li { margin-bottom: 6px; color: #2c3e50; }
+        #output strong { color: #0f172a; font-weight: 700; }
 
-        /* Premium Dynamic Matrix Tables Configuration */
+        /* Corporate Level Responsive Matrix Tables Config */
         #output table {
             width: 100%;
             border-collapse: collapse;
             margin: 25px 0;
             font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
         }
         #output th {
             background-color: #1e3a8a;
@@ -304,9 +306,9 @@
             const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
             const payloadPrompt = "Extract and solve all problems found in this file. Execute formatting precisely according to these architectural constraints:\n\n" +
-                                  "1. Split structural layouts for every single question using a distinct bold, clear heading with '(OR)' as a visible break token.\n" +
+                                  "1. Split structural layouts for every single question using a distinct bold, clear heading markdown with '(OR)' as a visible break token.\n" +
                                   "2. Option 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
-                                  "3. Option 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure native Hindi script words. Use clean conversational texting structures.\n" +
+                                  "3. Option 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure native Hindi script characters. Use clean conversational texting structures.\n" +
                                   "4. Structural Graphics & Tables: If rendering numerical parameters or data comparisons, construct standard clean markdown tables with defined headers, so the browser can transform them into professional grid elements.";
 
             const res = await fetch(endpoint, {
@@ -327,7 +329,7 @@
             if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
                 output.classList.add('blur-active');
                 
-                // Pure Native Markdown Parsing via Marked Library - Zero-Risk Structure Mapping
+                // Pure Stable Native Markdown Translation Framework via Marked Library
                 const rawResponseText = parsed.candidates[0].content.parts[0].text;
                 output.innerHTML = marked.parse(rawResponseText);
                 
@@ -342,12 +344,12 @@
                 }, 1600);
 
             } else {
-                output.innerHTML = "Operational Exception: System failed to extract clear layout metrics. Verify file exposure.";
+                output.innerHTML = "System Error: Unable to extract text data from the document. Please ensure the image is clean and well-lit.";
             }
 
         } catch (err) {
             console.error(err);
-            output.innerHTML = "Connection Interception: External network rejected file packet structures. Check parameters.";
+            output.innerHTML = "Network Interception: Unable to communicate with the core AI module. Please check your connection and try again.";
         } finally {
             solveBtn.innerText = "Process & Solve System 🚀";
             solveBtn.disabled = false;
