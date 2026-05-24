@@ -1,0 +1,16 @@
+{
+  "name": "exam-solver-backend",
+  "version": "1.0.0",
+  "description": "AI Exam Solver Backend Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^0.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pdfkit": "^0.15.0"
+  }
+}
