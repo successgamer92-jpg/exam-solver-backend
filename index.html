@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartSolve AI Dashboard - Enterprise Exam Analytics</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --brand-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
@@ -12,7 +13,7 @@
             --dark-card: #0f172a;
             --bg-soft: #f8fafc;
             --border-color: #cbd5e1;
-            --text-dark: #0f172a;
+            --text-dark: #1e293b;
         }
 
         body {
@@ -132,7 +133,7 @@
             pointer-events: none;
         }
 
-        /* Highly Styled Clean Layout for Beautiful View and High-Definition Print PDF */
+        /* High-Definition Executive Studio Template for Clean PDF Layout */
         #output {
             background: #ffffff;
             padding: 45px;
@@ -145,67 +146,39 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        /* Strict Dynamic Element Classes injected by custom script compiler */
-        .pdf-header {
-            font-size: 26px;
-            font-weight: 800;
+        /* Advanced HTML Structural Resets from Marked Parser */
+        #output h1, #output h2, #output h3 {
             color: #1e3a8a;
-            text-align: center;
-            border-bottom: 3px double #1e3a8a;
-            padding-bottom: 12px;
-            margin-bottom: 35px;
-        }
-        .question-block {
-            font-weight: 700;
-            font-size: 17px;
-            color: #0f172a;
             margin-top: 30px;
-            background: #f1f5f9;
-            padding: 10px 15px;
-            border-left: 5px solid #2563eb;
-            border-radius: 0 6px 6px 0;
-        }
-        .divider-or {
-            font-weight: 800;
-            color: #dc2626;
-            text-align: center;
-            margin: 25px 0;
-            font-size: 16px;
-            letter-spacing: 2px;
-            border-top: 1px dashed #cbd5e1;
+            margin-bottom: 15px;
+            font-weight: 700;
+            padding-bottom: 6px;
             border-bottom: 1px dashed #cbd5e1;
-            padding: 5px 0;
         }
-        .section-title {
-            font-weight: 600;
-            color: #1e3a8a;
-            margin: 15px 0 5px 0;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .text-p { margin-bottom: 15px; color: #334155; text-align: justify; }
-        
-        /* Premium Table Grid Injection Layer */
-        .premium-table {
+        #output p { color: #334155; margin-bottom: 16px; text-align: justify; }
+        #output ul, #output ol { margin-bottom: 18px; padding-left: 22px; }
+        #output li { margin-bottom: 6px; }
+
+        /* Premium Dynamic Matrix Tables Configuration */
+        #output table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin: 25px 0;
+            font-size: 14px;
         }
-        .premium-table th {
+        #output th {
             background-color: #1e3a8a;
             color: white;
             font-weight: 600;
-            padding: 12px 15px;
+            padding: 12px 14px;
             border: 1px solid #cbd5e1;
         }
-        .premium-table td {
-            padding: 12px 15px;
+        #output td {
+            padding: 12px 14px;
             border: 1px solid #cbd5e1;
             color: #334155;
         }
-        .premium-table tr:nth-child(even) { background-color: #f8fafc; }
+        #output tr:nth-child(even) { background-color: #f8fafc; }
 
         #toastNotice {
             position: fixed;
@@ -294,66 +267,6 @@
         osc.stop(audioCtx.currentTime + 0.4);
     }
 
-    // Dynamic Safe Output Formatter to Convert Raw Text Structures to Beautiful HTML UI elements
-    function formatAIResponseToHTML(rawText) {
-        let cleanHTML = `<div class="pdf-header">SmartSolve AI Executive Solutions Report</div>`;
-        
-        // Split text by lines to parse structured entries
-        const lines = rawText.split('\n');
-        let insideTable = false;
-        let tableHTML = '';
-
-        for (let line of lines) {
-            line = line.trim();
-            if (!line) continue;
-
-            // Remove markdown raw asterisks cleanly
-            let processedLine = line.replace(/\*\*/g, '').replace(/\*/g, '');
-
-            // Detect Matrix Table structure from AI
-            if (line.includes('|')) {
-                if (line.includes('---') || line.includes('+---')) continue; // Skip table markdown separators
-                const columns = line.split('|').map(c => c.trim()).filter(c => c !== '');
-                
-                if (!insideTable) {
-                    insideTable = true;
-                    tableHTML = '<table class="premium-table"><thead><tr>';
-                    columns.forEach(col => { tableHTML += `<th>${col.replace(/\*\*/g, '')}</th>`; });
-                    tableHTML += '</tr></thead><tbody>';
-                } else {
-                    tableHTML += '<tr>';
-                    columns.forEach(col => { tableHTML += `<td>${col}</td>`; });
-                    tableHTML += '</tr>';
-                }
-                continue;
-            } else {
-                if (insideTable) {
-                    insideTable = false;
-                    tableHTML += '</tbody></table>';
-                    cleanHTML += tableHTML;
-                }
-            }
-
-            // Route dynamic layout elements
-            if (line.toLowerCase().startsWith('question') || line.toLowerCase().startsWith('section')) {
-                cleanHTML += `<div class="question-block">${processedLine}</div>`;
-            } else if (line.includes('(OR)')) {
-                cleanHTML += `<div class="divider-or">( OR )</div>`;
-            } else if (line.toLowerCase().startsWith('block a') || line.toLowerCase().startsWith('block b') || line.toLowerCase().startsWith('solution')) {
-                cleanHTML += `<div class="section-title">📌 ${processedLine}</div>`;
-            } else {
-                cleanHTML += `<div class="text-p">${processedLine}</div>`;
-            }
-        }
-
-        if (insideTable) {
-            tableHTML += '</tbody></table>';
-            cleanHTML += tableHTML;
-        }
-
-        return cleanHTML;
-    }
-
     document.getElementById('fileInput').addEventListener('change', function(e) {
         if(e.target.files[0]) {
             document.getElementById('uploadText').innerText = "✅ Targeted Document: " + e.target.files[0].name;
@@ -391,10 +304,10 @@
             const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
             const payloadPrompt = "Extract and solve all problems found in this file. Execute formatting precisely according to these architectural constraints:\n\n" +
-                                  "1. Split structural layouts for every single question using a distinct bold '(OR)' text element divider.\n" +
-                                  "2. Element 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
-                                  "3. Element 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure Hindi words like 'प्रश्न' or 'उत्तर'. Use conversational texting structures.\n" +
-                                  "4. Structural Graphics: If rendering numerical parameters, arrays, or analytical charts, construct organized layout structures using standard clean matrix grid components or text markdown tables cleanly.";
+                                  "1. Split structural layouts for every single question using a distinct bold, clear heading with '(OR)' as a visible break token.\n" +
+                                  "2. Option 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
+                                  "3. Option 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure native Hindi script words. Use clean conversational texting structures.\n" +
+                                  "4. Structural Graphics & Tables: If rendering numerical parameters or data comparisons, construct standard clean markdown tables with defined headers, so the browser can transform them into professional grid elements.";
 
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -414,9 +327,9 @@
             if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
                 output.classList.add('blur-active');
                 
-                // Trigger dynamic raw data formatting to clean HTML structures
+                // Pure Native Markdown Parsing via Marked Library - Zero-Risk Structure Mapping
                 const rawResponseText = parsed.candidates[0].content.parts[0].text;
-                output.innerHTML = formatAIResponseToHTML(rawResponseText);
+                output.innerHTML = marked.parse(rawResponseText);
                 
                 setTimeout(() => {
                     output.classList.remove('blur-active');
@@ -429,7 +342,7 @@
                 }, 1600);
 
             } else {
-                output.innerHTML = "Operational Exception: System failed to compile solutions. Verify data density and file exposure.";
+                output.innerHTML = "Operational Exception: System failed to extract clear layout metrics. Verify file exposure.";
             }
 
         } catch (err) {
