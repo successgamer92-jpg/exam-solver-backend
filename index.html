@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartSolve AI Dashboard - Enterprise Exam Analytics</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --brand-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
             --dark-card: #0f172a;
             --bg-soft: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-dark: #1e293b;
+            --border-color: #cbd5e1;
+            --text-dark: #0f172a;
         }
 
         body {
@@ -21,12 +20,12 @@
             background-color: var(--bg-soft);
             margin: 0;
             padding: 0;
-            color: var(--text-dark);
+            color: #334155;
         }
 
         .navbar {
             background: white;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #e2e8f0;
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
@@ -68,7 +67,7 @@
             background: white;
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #e2e8f0;
             text-align: left;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
@@ -78,7 +77,7 @@
         .app-container {
             background: white;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #e2e8f0;
             box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
             padding: 40px;
             box-sizing: border-box;
@@ -128,56 +127,85 @@
             display: none;
         }
         .blur-active {
-            filter: blur(5px);
-            opacity: 0.5;
+            filter: blur(6px);
+            opacity: 0.4;
             pointer-events: none;
         }
 
-        /* Highly Styled Clean Layout for Beautiful Print/View PDF */
+        /* Highly Styled Clean Layout for Beautiful View and High-Definition Print PDF */
         #output {
             background: #ffffff;
-            padding: 40px;
+            padding: 45px;
             border-radius: 12px;
-            border: 1px solid var(--border-color);
-            border-top: 8px solid #1e3a8a;
-            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            border-top: 10px solid #1e3a8a;
+            color: var(--text-dark);
             line-height: 1.8;
             font-size: 15px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        /* HTML Elements Clean Mapping from Markdown */
-        #output h1, #output h2, #output h3 {
+        /* Strict Dynamic Element Classes injected by custom script compiler */
+        .pdf-header {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1e3a8a;
+            text-align: center;
+            border-bottom: 3px double #1e3a8a;
+            padding-bottom: 12px;
+            margin-bottom: 35px;
+        }
+        .question-block {
+            font-weight: 700;
+            font-size: 17px;
             color: #0f172a;
             margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 8px;
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-left: 5px solid #2563eb;
+            border-radius: 0 6px 6px 0;
         }
-        #output p { color: #334155; margin-bottom: 20px; font-size: 15px; text-align: justify; }
-        #output ul, #output ol { margin-bottom: 20px; padding-left: 25px; }
-        #output li { margin-bottom: 8px; color: #334155; }
+        .divider-or {
+            font-weight: 800;
+            color: #dc2626;
+            text-align: center;
+            margin: 25px 0;
+            font-size: 16px;
+            letter-spacing: 2px;
+            border-top: 1px dashed #cbd5e1;
+            border-bottom: 1px dashed #cbd5e1;
+            padding: 5px 0;
+        }
+        .section-title {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin: 15px 0 5px 0;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .text-p { margin-bottom: 15px; color: #334155; text-align: justify; }
         
-        /* Executive Level Table Layout Alignment */
-        #output table {
+        /* Premium Table Grid Injection Layer */
+        .premium-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        #output th, #output td {
-            border: 1px solid #cbd5e1;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        #output th {
-            background-color: #f1f5f9;
-            color: #0f172a;
+        .premium-table th {
+            background-color: #1e3a8a;
+            color: white;
             font-weight: 600;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
         }
-        #output tr:nth-child(even) { background-color: #f8fafc; }
+        .premium-table td {
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+        }
+        .premium-table tr:nth-child(even) { background-color: #f8fafc; }
 
         #toastNotice {
             position: fixed;
@@ -197,7 +225,7 @@
             margin: 25px 0;
             padding: 15px;
             background: #ffffff;
-            border: 1px dashed var(--border-color);
+            border: 1px dashed #e2e8f0;
             color: #94a3b8;
             font-size: 12px;
             border-radius: 8px;
@@ -266,6 +294,66 @@
         osc.stop(audioCtx.currentTime + 0.4);
     }
 
+    // Dynamic Safe Output Formatter to Convert Raw Text Structures to Beautiful HTML UI elements
+    function formatAIResponseToHTML(rawText) {
+        let cleanHTML = `<div class="pdf-header">SmartSolve AI Executive Solutions Report</div>`;
+        
+        // Split text by lines to parse structured entries
+        const lines = rawText.split('\n');
+        let insideTable = false;
+        let tableHTML = '';
+
+        for (let line of lines) {
+            line = line.trim();
+            if (!line) continue;
+
+            // Remove markdown raw asterisks cleanly
+            let processedLine = line.replace(/\*\*/g, '').replace(/\*/g, '');
+
+            // Detect Matrix Table structure from AI
+            if (line.includes('|')) {
+                if (line.includes('---') || line.includes('+---')) continue; // Skip table markdown separators
+                const columns = line.split('|').map(c => c.trim()).filter(c => c !== '');
+                
+                if (!insideTable) {
+                    insideTable = true;
+                    tableHTML = '<table class="premium-table"><thead><tr>';
+                    columns.forEach(col => { tableHTML += `<th>${col.replace(/\*\*/g, '')}</th>`; });
+                    tableHTML += '</tr></thead><tbody>';
+                } else {
+                    tableHTML += '<tr>';
+                    columns.forEach(col => { tableHTML += `<td>${col}</td>`; });
+                    tableHTML += '</tr>';
+                }
+                continue;
+            } else {
+                if (insideTable) {
+                    insideTable = false;
+                    tableHTML += '</tbody></table>';
+                    cleanHTML += tableHTML;
+                }
+            }
+
+            // Route dynamic layout elements
+            if (line.toLowerCase().startsWith('question') || line.toLowerCase().startsWith('section')) {
+                cleanHTML += `<div class="question-block">${processedLine}</div>`;
+            } else if (line.includes('(OR)')) {
+                cleanHTML += `<div class="divider-or">( OR )</div>`;
+            } else if (line.toLowerCase().startsWith('block a') || line.toLowerCase().startsWith('block b') || line.toLowerCase().startsWith('solution')) {
+                cleanHTML += `<div class="section-title">📌 ${processedLine}</div>`;
+            } else {
+                cleanHTML += `<div class="text-p">${processedLine}</div>`;
+            }
+        }
+
+        if (insideTable) {
+            tableHTML += '</tbody></table>';
+            cleanHTML += tableHTML;
+        }
+
+        return cleanHTML;
+    }
+
     document.getElementById('fileInput').addEventListener('change', function(e) {
         if(e.target.files[0]) {
             document.getElementById('uploadText').innerText = "✅ Targeted Document: " + e.target.files[0].name;
@@ -306,7 +394,7 @@
                                   "1. Split structural layouts for every single question using a distinct bold '(OR)' text element divider.\n" +
                                   "2. Element 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
                                   "3. Element 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure Hindi words like 'प्रश्न' or 'उत्तर'. Use conversational texting structures.\n" +
-                                  "4. Structural Graphics & Tables: If rendering numerical parameters, arrays, or analytical charts, construct organized layout structures using markdown tables cleanly so that the parser can render them into professional corporate HTML grids.";
+                                  "4. Structural Graphics: If rendering numerical parameters, arrays, or analytical charts, construct organized layout structures using standard clean matrix grid components or text markdown tables cleanly.";
 
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -326,9 +414,9 @@
             if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
                 output.classList.add('blur-active');
                 
-                // Convert Raw Markdown safely into Premium Styled Corporate HTML
-                const rawMarkdown = parsed.candidates[0].content.parts[0].text;
-                output.innerHTML = marked.parse(rawMarkdown);
+                // Trigger dynamic raw data formatting to clean HTML structures
+                const rawResponseText = parsed.candidates[0].content.parts[0].text;
+                output.innerHTML = formatAIResponseToHTML(rawResponseText);
                 
                 setTimeout(() => {
                     output.classList.remove('blur-active');
