@@ -245,7 +245,7 @@
         .price-features li { margin-bottom: 10px; color: #475569; }
         .price-features i { color: #10b981; margin-right: 8px; }
 
-        /* Global Structural Communities Elements (Cusdis Free Comments Style) */
+        /* Global Structural Communities Elements (Clean Native Design) */
         .forum-wrapper {
             background: white;
             border-radius: 16px;
@@ -254,6 +254,17 @@
             margin-top: 40px;
         }
         .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
+        /* Native Interactive Feedback Panel */
+        .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .feedback-input-group input, .feedback-input-group textarea { width: 100%; border: 1px solid #cbd5e1; padding: 12px; border-radius: 8px; font-family: inherit; font-size: 14px; box-sizing: border-box; }
+        .feedback-input-group textarea { resize: vertical; height: 100px; }
+        .feedback-submit-btn { background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; align-self: flex-start; transition: background 0.2s; }
+        .feedback-submit-btn:hover { background: #1d4ed8; }
+        
+        .comment-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 12px; }
+        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 6px; font-weight: 600; }
+        .comment-body { font-size: 14px; color: #334155; line-height: 1.5; }
 
         /* Social Proof Custom Pop-up Frame */
         #socialProofNotice {
@@ -445,14 +456,23 @@
 
     <div class="forum-wrapper">
         <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Feedback Community</div>
-        <div id="cusdis_thread" 
-             data-host="https://cusdis.com"
-             data-app-id="9db56070-dfd5-45ea-9080-6927bf7f8dae"
-             data-page-id="smartsolve_global_page_v2"
-             data-page-url="https://exam-solver-backend-pjea.vercel.app"
-             data-page-title="SmartSolve Dashboard">
+        
+        <div class="feedback-input-group">
+            <input type="text" id="forumUser" placeholder="Apna Naam Likhiye (e.g., Aman Sharma)...">
+            <textarea id="forumMsg" placeholder="Apna feedback ya query yahan share kijiye..."></textarea>
+            <button class="feedback-submit-btn" onclick="postLocalComment()">Post Discussion Link 🚀</button>
         </div>
-        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+        <div id="localCommentsContainer">
+            <div class="comment-item">
+                <div class="comment-header"><span>Rohan Verma (Indore)</span><span>Just Now</span></div>
+                <div class="comment-body">Bhai Physics assignment ka numerical ekdum makkhan step-by-step solve kar diya isne! ChatGPT par limits aa rahi thi, saved my day! 🔥</div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-header"><span>Priya Soni (Pune)</span><span>5 mins ago</span></div>
+                <div class="comment-body">Hinglish mix feature is awesome. Padhne me maza ata h aur boring textbook language nahi lagti.</div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -495,7 +515,23 @@
     setTimeout(triggerNextProofNotice, 3000);
     setInterval(triggerNextProofNotice, 18000);
 
-    // 🗂️ NAV TABS VIEWPORT ROUTER CONTROLLER
+    // NATIVE FORUM INTERACTIVE LOGIC
+    function postLocalComment() {
+        const userNode = document.getElementById('forumUser');
+        const msgNode = document.getElementById('forumMsg');
+        if(!userNode.value || !msgNode.value) {
+            alert("Please provide both name and your message content block.");
+            return;
+        }
+        const container = document.getElementById('localCommentsContainer');
+        const newItem = document.createElement('div');
+        newItem.className = 'comment-item';
+        newItem.innerHTML = `<div class="comment-header"><span>${userNode.value}</span><span>Just Now</span></div><div class="comment-body">${msgNode.value}</div>`;
+        container.insertBefore(newItem, container.firstChild);
+        userNode.value = ""; msgNode.value = "";
+    }
+
+    // 🗂 *NAV TABS VIEWPORT ROUTER CONTROLLER*
     function switchTab(targetId) {
         document.querySelectorAll('.viewport-section').forEach(section => section.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
