@@ -19,6 +19,7 @@
         :root {
             --brand-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --king-gold: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
             --bg-soft: #f8fafc;
             --text-dark: #1e293b;
         }
@@ -32,6 +33,7 @@
             overflow-x: hidden;
         }
 
+        /* Navbar Layout */
         .navbar {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -52,6 +54,7 @@
             cursor: pointer;
         }
         
+        /* Interactive Nav Tabs */
         .nav-tabs { display: flex; gap: 10px; }
         .tab-btn {
             background: none; border: none; padding: 10px 20px;
@@ -63,6 +66,7 @@
 
         .main-wrapper { max-width: 1050px; width: 100%; margin: 30px auto; padding: 0 20px; box-sizing: border-box; }
 
+        /* Real-Time Analytics Headers */
         .grid-stats { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 35px; }
         .stat-card { background: white; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 15px; }
         .stat-icon { font-size: 24px; color: #2563eb; background: #eff6ff; padding: 12px; border-radius: 10px; }
@@ -80,6 +84,7 @@
 
         .app-container { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 40px; box-sizing: border-box; margin-bottom: 35px; position: relative; }
 
+        /* Visual Strategic USP Card Framework */
         .usp-box { background: linear-gradient(to right, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 30px; }
         .usp-box h3 { margin-top: 0; color: #1e3a8a; font-size: 16px; display: flex; align-items: center; gap: 8px; }
         .usp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
@@ -88,6 +93,7 @@
         .badge-pro { background: #dcfce7; color: #15803d; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
         .badge-noob { background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; }
 
+        /* Upload Area UI */
         .upload-area { border: 2px dashed #cbd5e1; padding: 45px 20px; border-radius: 14px; background: #fafafa; cursor: pointer; text-align: center; margin-bottom: 25px; transition: background 0.2s; }
         .upload-area:hover { border-color: #3b82f6; background: #f1f5f9; }
         .upload-icon { font-size: 40px; color: #94a3b8; margin-bottom: 12px; }
@@ -95,6 +101,7 @@
         .upload-sub { font-size: 13px; color: #64748b; margin-top: 5px; display: block; }
         #fileInput { display: none; }
 
+        /* Trust Badges Matrix */
         .trust-row { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; font-size: 12px; color: #64748b; font-weight: 500; }
         .trust-row span { display: flex; align-items: center; gap: 6px; }
         .trust-row i { color: #10b981; }
@@ -118,23 +125,14 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         #output { background: #ffffff; padding: 45px; line-height: 1.8; font-size: 15px; position: relative; min-height: 200px; contain: layout; }
-        #output h1 { color: #1e3a8a; font-size: 24px; margin-top: 25px; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px; }
-        #output h2 { color: #2563eb; font-size: 20px; margin-top: 20px; }
-        #output table { width: 100%; border-collapse: collapse; margin: 25px 0; }
-        #output th { background-color: #1e3a8a; color: white; padding: 12px; }
-        #output td { padding: 12px; border: 1px solid #cbd5e1; }
-        #output tr:nth-child(even) { background-color: #f8fafc; }
 
         /* Pricing Grid Panels Layout */
         .pricing-grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 20px; }
         .price-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; text-align: center; position: relative; }
         .price-card.premium { border: 2px solid #3b82f6; box-shadow: 0 10px 20px rgba(59,130,246,0.06); }
         .price-tag { font-size: 36px; font-weight: 800; color: var(--text-dark); margin: 15px 0; }
-        .price-features { list-style: none; padding: 0; margin: 20px 0; text-align: left; font-size: 14px; }
-        .price-features li { margin-bottom: 10px; color: #475569; }
-        .price-features i { color: #10b981; margin-right: 8px; }
 
-        /* 💬 STABLE HIGH ENGAGEMENT STUDENT LOUNGE FORUM */
+        /* 💬 ADVANCED SEEDED FORUM WRAPPER UI */
         .forum-wrapper { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 30px; margin-top: 40px; }
         .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
@@ -143,11 +141,19 @@
         .feedback-submit-btn { background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; align-self: flex-start; }
         
         #localCommentsContainer { max-height: 550px; overflow-y: auto; padding-right: 5px; }
-        .comment-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 15px; }
-        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: 700; }
+        .comment-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 15px; position: relative; }
+        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: 700; align-items: center; }
         .comment-body { font-size: 14px; color: #334155; line-height: 1.5; }
         .reply-btn { background: none; border: none; color: #2563eb; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; padding: 0; }
         
+        /* 👑 THE INSANELY ROYAL KING PREMIUM EMBLEM TAG MATRIX */
+        .badge-king-tag {
+            background: var(--king-gold); color: white; padding: 3px 8px; border-radius: 20px;
+            font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;
+            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3); text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            margin-left: 6px; letter-spacing: 0.5px;
+        }
+
         .replies-container { margin-left: 25px; border-left: 2px dashed #cbd5e1; padding-left: 15px; margin-top: 12px; }
         .reply-item { background: white; border: 1px solid #e2e8f0; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; }
         
@@ -170,7 +176,6 @@
         .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; }
         .footer-links a { color: #cbd5e1; text-decoration: none; font-weight: 500; }
         .footer-links a:hover { color: #3b82f6; }
-        .ad-banner { margin: 25px 0; padding: 15px; background: #ffffff; border: 1px dashed #e2e8f0; color: #94a3b8; font-size: 11px; border-radius: 8px; text-align: center; }
     </style>
 </head>
 <body>
@@ -323,23 +328,22 @@
     }
     setInterval(triggerNextProofNotice, 15000);
 
-    // 💬 🚀 AUTOMATIC INFINITE AUTO-GROWING HARDENED COMMENT MATRIX ENGINE
-    const storageKey = 'smartsolve_final_bundle_lounge_v9';
+    // 💬 🚀 AUTOMATIC INFINITE KING REPLIES BOT ENGINE
+    const storageKey = 'smartsolve_royal_lounge_v11';
     
-    // Core database pool for automatic fake traffic growth
-    const dynamicNamesPool = ["Anjali Mehta", "Devansh Gupta", "Mehak Preet", "Sameer Khan", "Ritu Sharma", "Karan Malhotra", "Shreya Ghoshal", "Arjun Reddy", "Nisha Patel"];
-    const dynamicCommentsPool = [
-        "Chemistry polymers ka equation isne ek baar me balanced nikal ke table bana diya, absolute genius tool!",
-        "Bro, organic mechanics structure direct textbook standard match kar raha hai, total cheat code h exam ka.",
-        "Engineering Mathematics 3 ke advanced matrices isne 10 seconds me stream kar diye, life saver!",
-        "Iske answers direct scan karke copy paste kar liye, assignment me full marks locked h ab to.",
-        "Hinglish text flow is superb, lengthy answers ek baar me poore dimaag me fit ho jate hain bina bore huye.",
-        "Calculus option 2 explanation was so simple, direct clear explanation bina kisi extra text loop ke."
+    // Premium Bots Array with custom tags and destiny conversion content
+    const premiumNamesPool = ["Kabir Malhotra 👑 KING", "Ishita Sharma 👑 KING", "Devansh Gupta 👑 KING", "Sameer Khan 👑 KING", "Anjali Mehta 👑 KING"];
+    const premiumCommentsPool = [
+        "Bhai ₹149 worth it hai! Dedicated server node milta h, mera 8 page ka chemistry research paper bina waiting ke 2 second me complete HD table format me export ho gaya! 🏆",
+        "No watermark feature mast h premium ka, direct assignment file download karo aur bina watermark ke college portal pe upload kardo. Standard next-level h.",
+        "Engineering maths matrices solution checking 1 second me leak ho gayi, options 1 formal English report aur option 2 pure texting Hinglish dono seamless hain.",
+        "Ab to hamesha Pro Tier hi use karunga. Free tier me peak time pe wait time badh jata h par Premium wale automatic bypass ho jate h instantly.",
+        "Calculus structural graphs and analytics are perfect, normal tools se bohot advanced engine h iska link up."
     ];
 
     const staticInitialSeeds = [
-        { id: 2001, name: "Rohan Verma (Indore)", text: "Bhai Physics assignment ka numerical ekdum makkhan step-by-step solve kar diya isne! ChatGPT par limits aa rahi thi, saved my day! 🔥", time: "5 mins ago", replies: [] },
-        { id: 2002, name: "Priya Soni (Pune)", text: "Hinglish mix feature is awesome. Padhne me maza ata h aur boring textbook language nahi lagti. Highly recommended!", time: "14 mins ago", replies: [{ name: "Amit K.", text: "True, pichle 2 assignment maine isi platform se nikale h." }] }
+        { id: 3001, name: "Kabir Malhotra", isKing: true, text: "Bhai log ₹149 worth it hai! Dedicated server node milta h, mera 8 page ka chemistry assignment bina queue waiting ke direct HD document tables me generate ho gaya! Zero limits 🏆", time: "5 mins ago", replies: [{ name: "Aman S.", isKing: false, text: "Sahi me kya bhai? Mera free tier pe wait time dikha raha h high load ki wajah se." }] },
+        { id: 3002, name: "Suhani Shah", isKing: false, text: "Hinglish mix feature is awesome. Boring textbook language nahi lagti padhne me aur calculus explanation ekdum simple texting script jaisi h.", time: "12 mins ago", replies: [{ name: "Ishita Sharma", isKing: true, text: "Haan Suhani! Aur premium plan me to watermark bhi hat jata h, direct clean assignment download karke print maar lo!" }] }
     ];
 
     if(!localStorage.getItem(storageKey)) {
@@ -354,13 +358,18 @@
         comments.forEach(c => {
             let repliesHtml = "";
             if(c.replies && c.replies.length > 0) {
-                c.replies.forEach(r => { repliesHtml += `<div class="reply-item"><strong>${r.name}:</strong> ${r.text}</div>`; });
+                c.replies.forEach(r => { 
+                    const kingBadge = r.isKing ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
+                    repliesHtml += `<div class="reply-item"><strong>${r.name}${kingBadge}:</strong> ${r.text}</div>`; 
+                });
             }
+
+            const mainKingBadge = c.isKing ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
 
             const block = document.createElement('div');
             block.className = "comment-item";
             block.innerHTML = `
-                <div class="comment-header"><span>${c.name}</span><span>${c.time}</span></div>
+                <div class="comment-header"><span><strong>${c.name}</strong>${mainKingBadge}</span><span>${c.time}</span></div>
                 <div class="comment-body">${c.text}</div>
                 <button class="reply-btn" onclick="toggleReplyBox(${c.id})"><i class="fa-solid fa-reply"></i> Reply</button>
                 
@@ -381,12 +390,29 @@
         if(!name || !msg) return alert("Please fill both name and comment.");
 
         const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        comments.unshift({ id: Date.now(), name: name, text: msg, time: "Just Now", replies: [] });
+        // Normal user posts as non-king by default
+        comments.unshift({ id: Date.now(), name: name, isKing: false, text: msg, time: "Just Now", replies: [] });
         localStorage.setItem(storageKey, JSON.stringify(comments));
         
         document.getElementById('forumUser').value = "";
         document.getElementById('forumMsg').value = "";
         renderComments();
+
+        // 🤖 INSPIRING BOT INTERACTION TRIGGER (Triggers an automatic reply from a King bot after 4 seconds to inspire conversions!)
+        setTimeout(() => {
+            let freshComments = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const targetIndex = freshComments.findIndex(c => c.text === msg);
+            if(targetIndex !== -1) {
+                const randomKingName = premiumNamesPool[Math.floor(Math.random() * premiumNamesPool.length)].split(" ")[0];
+                freshComments[targetIndex].replies.push({
+                    name: randomKingName,
+                    isKing: true,
+                    text: "Bhai agar load ki wajah se queue fast chahiye toh direct Enterprise Plan lelo ₹149 me, zero server delays aur watermark free file unlock ho jayegi turant!"
+                });
+                localStorage.setItem(storageKey, JSON.stringify(freshComments));
+                renderComments();
+            }
+        }, 4000);
     }
 
     function toggleReplyBox(id) {
@@ -403,24 +429,25 @@
         const index = comments.findIndex(c => c.id === id);
         if(index !== -1) {
             if(!comments[index].replies) comments[index].replies = [];
-            comments[index].replies.push({ name: name, text: text });
+            comments[index].replies.push({ name: name, isKing: false, text: text });
             localStorage.setItem(storageKey, JSON.stringify(comments));
         }
         renderComments();
     }
 
-    // ⏳ AUTO-GROWING COMMENT SIMULATOR LOOP (Adds fake dynamic interaction every 30 seconds!)
+    // ⏳ BACKGROUND PREMIUM TRAFFIC INCREMENTOR LOOP (Injects a gold-tier crown user comment every 25 seconds)
     setInterval(() => {
         let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        const randomName = dynamicNamesPool[Math.floor(Math.random() * dynamicNamesPool.length)];
-        const randomComment = dynamicCommentsPool[Math.floor(Math.random() * dynamicCommentsPool.length)];
+        const randomKingRaw = premiumNamesPool[Math.floor(Math.random() * premiumNamesPool.length)];
+        const randomKingName = randomKingRaw.replace(" 👑 KING", "");
+        const randomComment = premiumCommentsPool[Math.floor(Math.random() * premiumCommentsPool.length)];
         
-        comments.unshift({ id: Date.now(), name: `${randomName} (Verified Student)`, text: randomComment, time: "Just Now", replies: [] });
-        if(comments.length > 20) comments.pop(); // Prevent history overflow
+        comments.unshift({ id: Date.now(), name: randomKingName, isKing: true, text: randomComment, time: "Just Now", replies: [] });
+        if(comments.length > 20) comments.pop(); 
         
         localStorage.setItem(storageKey, JSON.stringify(comments));
         renderComments();
-    }, 30000);
+    }, 25000);
 
     window.onload = renderComments;
 
@@ -437,7 +464,7 @@
 
     function triggerPremiumCheckout() { alert("🔒 Redirecting to Secure Gateway..."); }
 
-    // AI Core logic with Anti-Shake container
+    // AI Core logic
     async function solvePaper() {
         const fileInput = document.getElementById('fileInput');
         const outputWrapper = document.getElementById('outputWrapper');
@@ -451,7 +478,7 @@
         solveBtn.disabled = true;
         document.getElementById('downloadBtn').style.display = "none";
         outputWrapper.style.display = "block";
-        output.innerHTML = "⚙️ Initializing Matrix OCR Node Mapping... Please Wait.";
+        output.innerHTML = "<h3>⚙️ Initializing Matrix OCR Node Mapping... Please Wait.</h3>";
         
         generatedSolutionText = ""; 
         setTimeout(() => { if(!generatedSolutionText) { emailBox.style.display = "block"; } }, 1800);
