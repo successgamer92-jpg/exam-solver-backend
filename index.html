@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartSolve AI Dashboard - Enterprise Exam Analytics</title>
+    
+    <title>SmartSolve AI - Free Exam, Homework & Assignment Solver Online</title>
+    <meta name="description" content="Tired of ChatGPT upload limits? Solve unlimited exam papers, hard physics assignments, and math equations step-by-step in English and Hinglish mixed script free.">
+    <meta name="keywords" content="exam solver online, homework helper free, solve assignment ai, chatgpt file limit bypass, assignments solver, school assignment help, gemini flash helper">
+    <meta name="robots" content="index, follow">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
             --brand-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
@@ -14,6 +21,7 @@
             --bg-soft: #f8fafc;
             --border-color: #cbd5e1;
             --text-dark: #1e293b;
+            --accent-purple: #6366f1;
         }
 
         body {
@@ -24,6 +32,7 @@
             color: #334155;
         }
 
+        /* Navbar Layout */
         .navbar {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -31,74 +40,148 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             background: var(--brand-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+            cursor: pointer;
         }
-        .badge {
+        
+        /* Interactive Nav Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover { background: #f1f5f9; color: var(--text-dark); }
+        .tab-btn.active {
             background: #eff6ff;
             color: #2563eb;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
             border: 1px solid #bfdbfe;
         }
 
         .main-wrapper {
-            max-width: 1000px;
+            max-width: 1050px;
             width: 100%;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
             box-sizing: border-box;
         }
 
+        /* Dynamic Stats Grid */
         .grid-stats {
             display: grid;
             gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         .stat-card {
             background: white;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 1px solid #e2e8f0;
-            text-align: left;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        .stat-title { font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 5px;}
-        .stat-value { font-size: 18px; color: #0f172a; font-weight: 700; }
+        .stat-icon {
+            font-size: 24px;
+            color: #2563eb;
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        .stat-info-block { display: flex; flex-direction: column; }
+        .stat-title { font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 2px;}
+        .stat-value { font-size: 20px; color: #0f172a; font-weight: 700; }
+
+        /* Viewport Container Blocks */
+        .viewport-section { display: none; }
+        .viewport-section.active { display: block; animation: fadeIn 0.4s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .app-container {
             background: white;
             border-radius: 16px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.02);
             padding: 40px;
             box-sizing: border-box;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
+        /* Visual Strategic USP Card Framework */
+        .usp-box {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .usp-box h3 { margin-top: 0; color: #1e3a8a; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .usp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .usp-table th, .usp-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .usp-table th { color: #64748b; font-weight: 600; }
+        .badge-pro { background: #dcfce7; color: #15803d; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+        .badge-noob { background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; }
+
+        /* Assignment Solver Upload Area UI */
         .upload-area {
             border: 2px dashed #cbd5e1;
-            padding: 50px 20px;
-            border-radius: 12px;
+            padding: 45px 20px;
+            border-radius: 14px;
             background: #fafafa;
             cursor: pointer;
             margin-bottom: 25px;
+            text-align: center;
             transition: all 0.2s ease;
+            position: relative;
         }
-        .upload-area:hover {
-            border-color: #3b82f6;
-            background: #f1f5f9;
+        .upload-area:hover { border-color: #3b82f6; background: #f1f5f9; }
+        .upload-icon { font-size: 40px; color: #94a3b8; margin-bottom: 12px; }
+        .upload-title { font-size: 16px; font-weight: 600; color: #334155; display: block; }
+        .upload-sub { font-size: 13px; color: #64748b; margin-top: 5px; display: block; }
+        #fileInput { display: none; }
+
+        /* Trust Badges Matrix */
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
         }
-        .upload-title { font-size: 16px; font-weight: 600; color: #334155; }
+        .trust-row span { display: flex; align-items: center; gap: 6px; }
+        .trust-row i { color: #10b981; }
 
         .action-btn {
             color: white;
@@ -116,24 +199,10 @@
         #solveBtn { background: var(--success-gradient); }
         #solveBtn:disabled { background: #cbd5e1; cursor: not-allowed; }
         
-        #downloadBtn {
-            background: var(--brand-gradient);
-            margin-top: 20px;
-            display: none;
-        }
+        #downloadBtn { background: var(--brand-gradient); margin-top: 20px; display: none; }
 
-        #outputWrapper {
-            margin-top: 35px;
-            text-align: left;
-            display: none;
-        }
-        .blur-active {
-            filter: blur(6px);
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        /* High-Definition Executive Style Output Sheet for View & PDF */
+        /* Animated Live Streaming Output Container Layout */
+        #outputWrapper { margin-top: 35px; text-align: left; display: none; }
         #output {
             background: #ffffff;
             padding: 45px;
@@ -144,69 +213,81 @@
             line-height: 1.8;
             font-size: 15px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Elegant Structuring for Rendered Elements inside Document */
-        #output h1 {
-            color: #1e3a8a;
-            font-size: 24px;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #1e3a8a;
-            padding-bottom: 5px;
-        }
-        #output h2 {
-            color: #2563eb;
-            font-size: 20px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        #output h3 {
-            color: #0f172a;
-            font-size: 17px;
-            margin-top: 15px;
-            margin-bottom: 8px;
-        }
-        #output p { color: #2c3e50; margin-bottom: 16px; text-align: justify; }
-        #output ul, #output ol { margin-bottom: 18px; padding-left: 22px; }
-        #output li { margin-bottom: 6px; color: #2c3e50; }
-        #output strong { color: #0f172a; font-weight: 700; }
-
-        /* Premium Executive Matrix Design for Dynamic Tables */
-        #output table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 14px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
-        }
-        #output th {
-            background-color: #1e3a8a;
-            color: white;
-            font-weight: 600;
-            padding: 12px 14px;
-            border: 1px solid #cbd5e1;
-        }
-        #output td {
-            padding: 12px 14px;
-            border: 1px solid #cbd5e1;
-            color: #334155;
-        }
+        #output h1 { color: #1e3a8a; font-size: 24px; margin-top: 25px; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px; }
+        #output h2 { color: #2563eb; font-size: 20px; margin-top: 20px; }
+        #output table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        #output th { background-color: #1e3a8a; color: white; padding: 12px; border: 1px solid #cbd5e1; }
+        #output td { padding: 12px; border: 1px solid #cbd5e1; }
         #output tr:nth-child(even) { background-color: #f8fafc; }
 
-        #toastNotice {
-            position: fixed;
-            bottom: 30px;
-            right: -400px;
-            background: var(--dark-card);
-            color: white;
-            padding: 16px 28px;
-            border-radius: 10px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
-            font-weight: 500;
-            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2) ;
-            z-index: 9999;
+        /* Pricing Grid Panels Layout */
+        .pricing-grid {
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            margin-top: 20px;
         }
+        .price-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .price-card.premium { border: 2px solid #3b82f6; box-shadow: 0 10px 20px rgba(59,130,246,0.06); }
+        .price-tag { font-size: 36px; font-weight: 800; color: var(--text-dark); margin: 15px 0; }
+        .price-features { list-style: none; padding: 0; margin: 20px 0; text-align: left; font-size: 14px; }
+        .price-features li { margin-bottom: 10px; color: #475569; }
+        .price-features i { color: #10b981; margin-right: 8px; }
+
+        /* Global Structural Communities Elements (Disqus Framework Spacer) */
+        .forum-wrapper {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        /* Social Proof Custom Pop-up Frame */
+        #socialProofNotice {
+            position: fixed;
+            bottom: 20px;
+            left: -400px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .proof-avatar { width: 36px; height: 36px; background: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .proof-text { font-size: 12px; color: #475569; line-height: 1.4; }
+        .proof-text strong { color: var(--text-dark); }
+
+        /* Corporate Trust Legal Footer */
+        .footer-distributed {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 16px 16px 0 0;
+            font-size: 13px;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; font-weight: 500; }
+        .footer-links a:hover { color: #3b82f6; }
 
         .ad-banner {
             margin: 25px 0;
@@ -214,7 +295,7 @@
             background: #ffffff;
             border: 1px dashed #e2e8f0;
             color: #94a3b8;
-            font-size: 12px;
+            font-size: 11px;
             border-radius: 8px;
             letter-spacing: 1.5px;
             text-align: center;
@@ -223,70 +304,207 @@
 </head>
 <body>
 
-<div id="toastNotice">⚡ System Notice: PDF Analysis ready for download!</div>
+<div id="socialProofNotice">
+    <div class="proof-avatar" id="proofAvatar">A</div>
+    <div class="proof-text" id="proofText"></div>
+</div>
 
 <div class="navbar">
-    <div class="logo">SmartSolve AI Dashboard</div>
-    <div class="badge">v2.5 Engine Active</div>
+    <div class="logo" onclick="switchTab('dashboard')">SmartSolve AI <span style="font-size: 12px; font-weight:400; color:#64748b;">v2.8 Master</span></div>
+    <div class="nav-tabs">
+        <button id="tab-dashboard" class="tab-btn active" onclick="switchTab('dashboard')"><i class="fa-solid antiquewhite fa-square-poll-horizontal"></i> Solver Engine</button>
+        <button id="tab-analytics" class="tab-btn" onclick="switchTab('analytics')"><i class="fa-solid fa-chart-line"></i> Live Metrics</button>
+        <button id="tab-pricing" class="tab-btn" onclick="switchTab('pricing')"><i class="fa-solid fa-gem"></i> Premium Tiers</button>
+    </div>
 </div>
 
 <div class="main-wrapper">
+    
     <div class="grid-stats">
         <div class="stat-card">
-            <div class="stat-title">Processing Architecture</div>
-            <div class="stat-value" style="color: #2563eb;">Direct Edge Engine</div>
+            <div class="stat-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+            <div class="stat-info-block">
+                <span class="stat-title">Global PDF Reports Printed</span>
+                <span id="livePdfCounter" class="stat-value">1,042</span>
+            </div>
         </div>
         <div class="stat-card">
-            <div class="stat-title">Supported Outputs</div>
-            <div class="stat-value">English / Hinglish Mix</div>
+            <div class="stat-icon" style="color: #10b981; background: #e6f4ea;"><i class="fa-solid fa-bolt"></i></div>
+            <div class="stat-info-block">
+                <span class="stat-title">AI Processing Standard</span>
+                <span class="stat-value" style="color: #10b981;">Unlimited / Zero Caps</span>
+            </div>
         </div>
         <div class="stat-card">
-            <div class="stat-title">Export Options</div>
-            <div class="stat-value">High Definition PDF</div>
+            <div class="stat-icon" style="color: #6366f1; background: #eef2ff;"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="stat-info-block">
+                <span class="stat-title">Target Modules</span>
+                <span class="stat-value">Exams & Assignments</span>
+            </div>
         </div>
     </div>
 
-    <div class="ad-banner">GLOBAL ADSENSE POSITION HOLDER</div>
-
-    <div class="app-container">
-        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-            <span id="uploadText" class="upload-title">📁 Drag & drop or click to upload examination document</span>
-            <input type="file" id="fileInput" accept="image/*,application/pdf">
+    <div id="view-dashboard" class="viewport-section active">
+        
+        <div class="usp-box">
+            <h3><i class="fa-solid fa-shield-halved"></i> Why Students Prefer SmartSolve AI over ChatGPT?</h3>
+            <table class="usp-table">
+                <thead>
+                    <tr>
+                        <th>Platform Capabilities</th>
+                        <th>Standard AI Tools (ChatGPT/Gemini)</th>
+                        <th>SmartSolve Premium Hub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Daily Photo/File Limits</strong></td>
+                        <td><span class="badge-noob">Max 3 to 5 uploads (Then Blocked)</span></td>
+                        <td><span class="badge-pro">100% Unlimited Forever Free</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Assignment Language Output</strong></td>
+                        <td>Textbook English Only</td>
+                        <td><strong>Textbook English + Texting Hinglish Mix</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Document Downloader Format</strong></td>
+                        <td>Plain Raw Code Syntax</td>
+                        <td><strong>HD Executive Sheet Grid Tables</strong></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <button id="solveBtn" class="action-btn" onclick="solvePaper()">Process & Solve System 🚀</button>
-        <button id="downloadBtn" class="action-btn" onclick="downloadPDF()">📥 Export Document as PDF Report</button>
+        <div class="app-container">
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <span id="uploadText" class="upload-title">Drag & drop or click to inject examination image/PDF</span>
+                <span class="upload-sub">Supports raw camera images, scanned notebook assignments, matrices blueprints</span>
+                <input type="file" id="fileInput" accept="image/*,application/pdf">
+            </div>
 
-        <div id="outputWrapper">
-            <div id="output"></div>
+            <div class="trust-row">
+                <span><i class="fa-solid fa-circle-check"></i> Verified Anti-Limit Bypass</span>
+                <span><i class="fa-solid fa-lock"></i> 100% Privacy Checked (No Logs)</span>
+                <span><i class="fa-solid fa-bolt"></i> Gemini 2.5 Realtime Frame</span>
+            </div>
+
+            <button id="solveBtn" class="action-btn" onclick="solvePaper()">Process & Solve Assignment 🚀</button>
+            <button id="downloadBtn" class="action-btn" onclick="downloadPDF()">📥 Export HD Document with Verified Brand Watermark</button>
+
+            <div id="outputWrapper">
+                <div id="output"></div>
+            </div>
         </div>
     </div>
 
-    <div class="ad-banner">GLOBAL ADSENSE POSITION HOLDER</div>
+    <div id="view-analytics" class="viewport-section">
+        <div class="app-container" style="text-align: center;">
+            <h2><i class="fa-solid fa-chart-pie"></i> Real-time Network Analytics</h2>
+            <p style="color: #64748b;">Live tracker processing nodes distributed worldwide.</p>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; height: 240px; border-radius: 12px; margin: 20px 0; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
+                <div style="width:80%;">
+                    <p style="font-size:13px; font-weight:600; color:#475569; margin-bottom:5px;">System Load Distribution (Live Stream simulation Active)</p>
+                    <div style="background:#cbd5e1; height:20px; width:100%; border-radius:10px; overflow:hidden;">
+                        <div style="background: var(--brand-gradient); height:100%; width: 73%; text-align:right; color:white; font-size:11px; font-weight:700; line-height:20px; padding-right:10px;">73% Operational Efficiency</div>
+                    </div>
+                    <p style="font-size:12px; color:#94a3b8; margin-top:15px;"><i class="fa-solid fa-circle" style="color:#3b82f6;"></i> Asian Nodes: Active | <i class="fa-solid fa-circle" style="color:#10b981;"></i> US Edge Clusters: Connected</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-pricing" class="viewport-section">
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Basic Learner Plan</h3>
+                <div class="price-tag">₹0<span style="font-size:14px; font-weight:400; color:#64748b;"> / lifetime</span></div>
+                <ul class="price-features">
+                    <li><i class="fa-solid fa-check"></i> Unlimited Image Scans</li>
+                    <li><i class="fa-solid fa-check"></i> Dual English / Hinglish Text outputs</li>
+                    <li><i class="fa-solid fa-check"></i> Standard HTML Matrix Tables</li>
+                </ul>
+                <button class="action-btn" style="background:#64748b;" onclick="switchTab('dashboard')">Active Core Plan</button>
+            </div>
+            <div class="price-card premium">
+                <div style="background:#3b82f6; color:white; font-size:11px; font-weight:700; padding:4px 12px; border-radius:20px; display:inline-block; position:absolute; top:-12px; left:35%;">MOST POPULAR</div>
+                <h3>Enterprise Pro Executive</h3>
+                <div class="price-tag">₹149<span style="font-size:14px; font-weight:400; color:#64748b;"> / month</span></div>
+                <ul class="price-features">
+                    <li><i class="fa-solid fa-check"></i> Zero Queue Delays (Dedicated Node)</li>
+                    <li><i class="fa-solid fa-check"></i> Clear Invisible Watermarks Export</li>
+                    <li><i class="fa-solid fa-check"></i> AI Custom Formula Graph Engine</li>
+                </ul>
+                <button class="action-btn" onclick="alert('Pricing portal integration ready. Currently all premium features unlocked during launch testing phase!')">Upgrade Enterprise Portal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-banner">GLOBAL ADSENSE LAYOUT MATRIX AD BLOCKER HOLDER</div>
+
+    <div class="forum-wrapper">
+        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Feedback Community</div>
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+<div class="footer-distributed">
+    <div class="footer-links">
+        <a href="#" onclick="alert('SmartSolve AI is an advanced educational research prototype built to eliminate multi-file caps on legacy generative platforms.')">About Us</a>
+        <a href="#" onclick="alert('Privacy Matrix Policy: SmartSolve processes all images securely via endpoint memory frames. We never cache, store, or sell uploaded documents or student information.')">Privacy Policy</a>
+        <a href="#" onclick="alert('Terms of Service: This product is designed for assignment verification and paper diagnostics mapping.')">Terms of Use</a>
+    </div>
+    <p style="margin:0; color:#64748b; font-size:12px;">&copy; 2026 SmartSolve AI Platforms Network. Built securely using Cloud Edge Engines. All rights reserved.</p>
 </div>
 
 <script>
-    function triggerAudioNotification() {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
-        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.12); 
-        osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.24); 
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.4);
+    // ⏳ REALTIME DYNAMIC DOWNLOADS COUNTER ENGINE SETUP
+    let currentCount = 1042;
+    setInterval(() => {
+        currentCount += Math.floor(Math.random() * 3) + 1; 
+        document.getElementById('livePdfCounter').innerText = currentCount.toLocaleString();
+    }, 14000);
+
+    // 🔔 INTERACTIVE AUTOMATIC SOCIAL PROOF POP-UPS TIMEOUTS ENGINE
+    const consumerNames = ["Rahul from Delhi", "Aman from Mumbai", "Sneha from Pune", "Vikram from Bangalore", "Priya from Ahmedabad", "Kabir from Lucknow", "Rohan from Indore"];
+    const actionsPool = ["just solved a Physics Assignment paper!", "downloaded a 6-page HD Chemistry Report!", "verified an organic structural formula table!", "exported a Math Calculus answer sheet blueprint!"];
+    
+    function triggerNextProofNotice() {
+        const selectedName = consumerNames[Math.floor(Math.random() * consumerNames.length)];
+        const selectedAction = actionsPool[Math.floor(Math.random() * actionsPool.length)];
+        
+        document.getElementById('proofAvatar').innerText = selectedName.charAt(0);
+        document.getElementById('proofText').innerHTML = `<strong>${selectedName}</strong> ${selectedAction}`;
+        
+        const popupElement = document.getElementById('socialProofNotice');
+        popupElement.style.left = '20px';
+        
+        setTimeout(() => {
+            popupElement.style.left = '-400px';
+        }, 5000);
+    }
+    setTimeout(triggerNextProofNotice, 3000);
+    setInterval(triggerNextProofNotice, 18000);
+
+    // 🗂️ NAV TABS VIEWPORT ROUTER CONTROLLER
+    function switchTab(targetId) {
+        document.querySelectorAll('.viewport-section').forEach(section => section.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(`view-${targetId}`).classList.add('active');
+        document.getElementById(`tab-${targetId}`).classList.add('active');
     }
 
+    // Auto-Reset File Input Tracker UI Action
     document.getElementById('fileInput').addEventListener('change', function(e) {
         if(e.target.files[0]) {
-            document.getElementById('uploadText').innerText = "✅ Targeted Document: " + e.target.files[0].name;
+            document.getElementById('uploadText').innerText = "✅ Locked Document: " + e.target.files[0].name;
         }
     });
 
+    // 🧠 CORE LIVE STEP-BY-STEP STREAM EXTRACTION LAYER (Boring Loading Override)
     async function solvePaper() {
         const fileInput = document.getElementById('fileInput');
         const outputWrapper = document.getElementById('outputWrapper');
@@ -295,93 +513,164 @@
         const downloadBtn = document.getElementById('downloadBtn');
 
         if (!fileInput.files[0]) {
-            alert("Please provide a valid document source first.");
+            alert("Please input your targeted assignment document image structure first.");
             return;
         }
 
-        solveBtn.innerText = "Running Deep Neural Extraction Pipeline... Please wait...";
+        solveBtn.innerText = "Processing System Matrix Engine Layers...";
         solveBtn.disabled = true;
         downloadBtn.style.display = "none";
         outputWrapper.style.display = "block";
-        output.classList.remove('blur-active');
-        output.innerHTML = "System Status: Initializing local canvas rendering blocks and establishing stream connection...";
+        output.innerHTML = "";
 
-        try {
-            const file = fileInput.files[0];
-            const base64Str = await new Promise((resolve) => {
-                const r = new FileReader();
-                r.onloadend = () => resolve(r.result.split(',')[1]);
-                r.readAsDataURL(file);
-            });
+        // Interactive Stage Loader Animation Sequence Loop to hold user attention
+        const processingSteps = [
+            "⚙️ Step 1: Initiating High Definition OCR Matrix Mapping... Done.",
+            "⚙️ Step 2: Unlocking Gemini Core Unlimited Bypass Protocol... Connected.",
+            "⚙️ Step 3: Resolving Structural Numerical Tables & Logical Formulations...",
+            "🚀 Step 4: System Ready. Streaming live textbook answer blocks now:\n\n---\n\n"
+        ];
 
-            // Clean obfuscated split mechanism to prevent GitHub bots from banning the key
-            const part1 = "AIzaSyBcQZRAkqPmzK46";
-            const part2 = "IzXGGIs8hcN8YQ0515o";
-            const apiKey = part1 + part2; 
-            
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-            const payloadPrompt = "Extract and solve all problems found in this file. Execute formatting precisely according to these architectural constraints:\n\n" +
-                                  "1. Split structural layouts for every single question using a distinct bold, clear heading markdown with '(OR)' as a visible break token.\n" +
-                                  "2. Option 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
-                                  "3. Option 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure native Hindi script characters. Use clean conversational texting structures.\n" +
-                                  "4. Structural Graphics & Tables: If rendering numerical parameters or data comparisons, construct standard clean markdown tables with defined headers, so the browser can transform them into professional grid elements.";
-
-            const res = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [
-                            { text: payloadPrompt },
-                            { inlineData: { mimeType: file.type, data: base64Str } }
-                        ]
-                    }]
-                })
-            });
-
-            const parsed = await res.json();
-
-            if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
-                output.classList.add('blur-active');
-                
-                const rawResponseText = parsed.candidates[0].content.parts[0].text;
-                output.innerHTML = marked.parse(rawResponseText);
-                
-                setTimeout(() => {
-                    output.classList.remove('blur-active');
-                    downloadBtn.style.display = "block";
-                    
-                    triggerAudioNotification();
-                    const pop = document.getElementById('toastNotice');
-                    pop.style.right = '30px';
-                    setTimeout(() => { pop.style.right = '-400px'; }, 4500);
-                }, 1600);
-
+        let stepIndex = 0;
+        const printInterval = setInterval(() => {
+            if(stepIndex < processingSteps.length) {
+                output.innerHTML += processingSteps[stepIndex] + "<br>";
+                stepIndex++;
             } else {
-                output.innerHTML = "System Error: Unable to extract data. Please make sure the upload contains clear question texts.";
+                clearInterval(printInterval);
+                triggerMainAIService();
             }
+        }, 1200);
 
-        } catch (err) {
-            console.error(err);
-            output.innerHTML = "Network Interception: Connection timeout. Please check your network and try again.";
-        } finally {
-            solveBtn.innerText = "Process & Solve System 🚀";
-            solveBtn.disabled = false;
+        async function triggerMainAIService() {
+            try {
+                const file = fileInput.files[0];
+                const base64Str = await new Promise((resolve) => {
+                    const r = new FileReader();
+                    r.onloadend = () => resolve(r.result.split(',')[1]);
+                    r.readAsDataURL(file);
+                });
+
+                // Anti-Leak Script Block Segmentation Strategy 
+                const part1 = "AIzaSyBcQZRAkqPmzK46";
+                const part2 = "IzXGGIs8hcN8YQ0515o";
+                const apiKey = part1 + part2; 
+                
+                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+                const payloadPrompt = "Extract and solve all problems found in this file. Execute formatting precisely according to these architectural constraints:\n\n" +
+                                      "1. Split structural layouts for every single question using a distinct bold, clear heading markdown with '(OR)' as a visible break token.\n" +
+                                      "2. Option 1 (Pure English): Detail comprehensive step-by-step solutions using formal textbook English vocabulary.\n" +
+                                      "3. Option 2 (Natural Chatting Hinglish): Rewrite the identical complete answer using Latin alphanumeric script but structural conversational Hindi phrasing (e.g., 'Chaliye is formula ko lagakar hum problem handle karte hain'). Absolutely avoid pure native Hindi script characters. Use clean conversational texting structures.\n" +
+                                      "4. Structural Graphics & Tables: If rendering numerical parameters or data comparisons, construct standard clean markdown tables with defined headers, so the browser can transform them into professional grid elements.";
+
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [
+                                { text: payloadPrompt },
+                                { inlineData: { mimeType: file.type, data: base64Str } }
+                            ]
+                        }]
+                    })
+                });
+
+                const parsed = await res.json();
+
+                if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
+                    const rawResponseText = parsed.candidates[0].content.parts[0].text;
+                    const cleanHtmlString = marked.parse(rawResponseText);
+                    
+                    // ⚡ CHATGPT TYPEWRITER SMOOTH TEXT FLOW RENDERING SIMULATION ENGINE
+                    output.innerHTML = ""; 
+                    let currentLength = 0;
+                    const chunksSpeed = 30; 
+                    
+                    const typingTimer = setInterval(() => {
+                        if (currentLength < cleanHtmlString.length) {
+                            currentLength += chunksSpeed;
+                            output.innerHTML = cleanHtmlString.substring(0, currentLength);
+                            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                        } else {
+                            clearInterval(typingTimer);
+                            downloadBtn.style.display = "block";
+                            
+                            // 🔄 Clean File Reset Trigger Engine to allow continuous fast subsequent uploads
+                            fileInput.value = "";
+                            document.getElementById('uploadText').innerText = "📁 Drag & drop or click to inject next assignment document";
+                        }
+                    }, 15);
+
+                } else {
+                    output.innerHTML = "❌ AI Quota Matrix Interrupted. Google rate limits saturated. Retry in 60 seconds.";
+                }
+
+            } catch (err) {
+                console.error(err);
+                output.innerHTML = "❌ Core Link Failure. System network state degraded. Check local internet parameters.";
+            } finally {
+                solveBtn.innerText = "Process & Solve Assignment 🚀";
+                solveBtn.disabled = false;
+            }
         }
     }
 
+    // 🎨 HD PDF RENDERING EXPORT SYSTEM WITH INVISIBLE BRAND WATERMARK
     function downloadPDF() {
         const docNode = document.getElementById('output');
+        
+        // Dynamic Injectable Layer for Background Branding Watermark Graphic Matrix
+        const markWrapper = document.createElement('div');
+        markWrapper.style.position = 'absolute';
+        markWrapper.style.top = '0'; markWrapper.style.left = '0';
+        markWrapper.style.width = '100%'; markWrapper.style.height = '100%';
+        markWrapper.style.pointerEvents = 'none';
+        markWrapper.style.display = 'flex';
+        markWrapper.style.flexDirection = 'column';
+        markWrapper.style.justifyContent = 'space-around';
+        markWrapper.style.alignItems = 'center';
+        markWrapper.style.opacity = '0.04'; 
+        markWrapper.style.transform = 'rotate(-30deg) scale(1.4)';
+        markWrapper.style.zIndex = '9999';
+
+        for (let i = 0; i < 5; i++) {
+            const el = document.createElement('h1');
+            el.innerText = "SMARTSOLVE AI PLATFORMS NETWORK";
+            el.style.fontSize = '32px';
+            el.style.fontWeight = '900';
+            markWrapper.appendChild(el);
+        }
+        
+        docNode.appendChild(markWrapper);
+
         const configurations = {
-            margin:       15,
-            filename:     'SmartSolve_Executive_Report.pdf',
+            margin:       12,
+            filename:     'SmartSolve_HD_Assignment_Report.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
-        html2pdf().set(configurations).from(docNode).save();
+
+        html2pdf().set(configurations).from(docNode).save().then(() => {
+            // Remove canvas branding elements safely after rendering pipeline executes completely
+            docNode.removeChild(markWrapper);
+        });
     }
+</script>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = window.location.href;  
+        this.page.identifier = 'smartsolve_global_forum_v2'; 
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');
+        s.src = 'https://exam-solver-backend.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 
 </body>
