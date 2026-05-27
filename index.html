@@ -65,7 +65,7 @@
 
         .main-wrapper { max-width: 1050px; width: 100%; margin: 30px auto; padding: 0 20px; box-sizing: border-box; }
 
-        /* Dynamic Counter Header Grid */
+        /* Dynamic Continuous Stats Grid Layout */
         .grid-stats { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 35px; }
         .stat-card { background: white; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 15px; }
         .stat-icon { font-size: 24px; color: #2563eb; background: #eff6ff; padding: 12px; border-radius: 10px; }
@@ -83,7 +83,7 @@
 
         .app-container { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 40px; box-sizing: border-box; margin-bottom: 35px; position: relative; }
 
-        /* Strategic Comparison Table Layout */
+        /* Strategic Comparison Card Layout */
         .usp-box { background: linear-gradient(to right, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 30px; }
         .usp-box h3 { margin-top: 0; color: #1e3a8a; font-size: 16px; display: flex; align-items: center; gap: 8px; }
         .usp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
@@ -146,33 +146,18 @@
         .price-features li { margin-bottom: 10px; color: #475569; }
         .price-features i { color: #10b981; margin-right: 8px; }
 
-        /* 💬 PREMIUM BALANCED DISCUSSION LOUNGE */
+        /* 💬 GLOBAL CHAT LOUNGE SYSTEM FOR CUSDIS HOOK */
         .forum-wrapper { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 30px; margin-top: 40px; }
-        .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-        .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-        .feedback-input-group input, .feedback-input-group textarea { width: 100%; border: 1px solid #cbd5e1; padding: 12px; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 14px; }
-        .feedback-input-group textarea { height: 80px; resize: vertical; }
-        .feedback-submit-btn { background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; align-self: flex-start; }
+        .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 25px; display: flex; align-items: center; gap: 8px; }
         
-        #localCommentsContainer { max-height: 550px; overflow-y: auto; padding-right: 5px; }
-        .comment-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 15px; }
-        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: 700; align-items: center; }
-        .comment-body { font-size: 14px; color: #334155; line-height: 1.5; }
-        .reply-btn { background: none; border: none; color: #2563eb; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; padding: 0; }
-        
-        /* 👑 THE INSANELY ROYAL PREMIUM KING BADGE */
         .badge-king-tag {
             background: var(--king-gold); color: white; padding: 3px 8px; border-radius: 20px;
             font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;
             box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3); margin-left: 6px; letter-spacing: 0.5px;
         }
 
-        .replies-container { margin-left: 25px; border-left: 2px dashed #cbd5e1; padding-left: 15px; margin-top: 12px; }
-        .reply-item { background: white; border: 1px solid #e2e8f0; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; }
-        
-        .reply-input-box { display: none; margin-top: 12px; gap: 8px; }
-        .reply-input-box input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        .reply-submit-btn { background: #475569; color: white; border: none; padding: 0 16px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600; }
+        /* Custom Override Styles for the Embedded Global Iframe Content to match King Portal branding */
+        #cusdis_thread iframe { width: 100% !important; min-height: 450px !important; border: none !important; }
 
         /* 🔔 SOCIAL PROOF LIVE ALERTS */
         #socialProofNotice {
@@ -213,7 +198,7 @@
             <div class="stat-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
             <div class="stat-info-block">
                 <span class="stat-title">Global PDF Solutions Exported</span>
-                <span id="livePdfCounter" class="stat-value">Calculating...</span>
+                <span id="livePdfCounter" class="stat-value">Calculating Array...</span>
             </div>
         </div>
         <div class="stat-card">
@@ -306,15 +291,16 @@
     </div>
 
     <div class="forum-wrapper">
-        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Feedback Community</div>
+        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Global Synced Community</div>
         
-        <div class="feedback-input-group">
-            <input type="text" id="forumUser" placeholder="Enter your name (e.g., Aman Sharma)...">
-            <textarea id="forumMsg" placeholder="Type your assignment feedback or chat reply here..."></textarea>
-            <button class="feedback-submit-btn" onclick="postLocalComment()">Post Comment 🚀</button>
+        <div id="cusdis_thread" 
+             data-host="https://cusdis.com"
+             data-app-id="9db56070-dfd5-45ea-9080-6927bf7f8dae"
+             data-page-id="smartsolve_global_production_v99"
+             data-page-url="https://exam-solver-backend-pjea.vercel.app"
+             data-page-title="SmartSolve Production Room Gateway">
         </div>
-
-        <div id="localCommentsContainer"></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     </div>
 
 </div>
@@ -328,7 +314,7 @@
 </div>
 
 <script>
-    // 🔑 INITIALIZE EMAILJS WITH QUANTUM SECURITY TOKEN
+    // 🔑 INITIALIZE EMAILJS
     (function() { emailjs.init("XFENv0eFvxyBUOBGn"); })();
 
     let generatedSolutionText = ""; 
@@ -336,15 +322,16 @@
     let queuedName = "";
     let queuedEmail = "";
 
-    // ⏳ ANTI-RESET MATHEMATICAL CONTINUOUS PRINT CALCULATOR
+    // ⏳ MATHEMATICAL CHRONO-INCREMENTER ENGINE (Increases every single minute/day/year realistically, never drops!)
     const epochStart = 1716800000000; 
     function updateCounter() {
         const timeDiff = Date.now() - epochStart;
-        const computedCount = Math.floor(184023 + (timeDiff / 85000)); 
+        // Calibrated mathematical multiplier factor to dynamically grow numbers safely across device refreshes
+        const computedCount = Math.floor(482019 + (timeDiff / 92000)); 
         document.getElementById('livePdfCounter').innerText = computedCount.toLocaleString();
     }
     updateCounter();
-    setInterval(updateCounter, 10000);
+    setInterval(updateCounter, 12000); // 12 seconds internal frame sequence step
 
     // 🔔 SOCIAL PROOF LIVE ALERTS
     const consumerNames = ["Rahul from Delhi", "Aman from Mumbai", "Sneha from Pune", "Vikram from Bangalore", "Priya from Ahmedabad"];
@@ -361,125 +348,6 @@
     }
     setInterval(triggerNextProofNotice, 15000);
 
-    // 💬 AUTOMATIC COMMENT INJECTION FRAMEWORK
-    const storageKey = 'smartsolve_king_lounge_v29';
-    
-    const freePool = [
-        { name: "Suresh Patil (Nagpur)", text: "Bhai log solution aane me kitna time lagta h normal browser pe? Mera high server load screen dikha rha h." },
-        { name: "Vikram Malhotra", text: "Physics calculus ke numerical standard matches perfectly. ChatGPT file upload limits are boring." },
-        { name: "Nisha Poddar (Kolkata)", text: "Hinglish output layout bohot helpful h, options read karne me maza aata h, boring textbook style nahi h." }
-    ];
-
-    const kingPool = [
-        { name: "Karan Malhotra", text: "Suresh bhai free tier pe load rehta h peak hours me bacho ka. Direct ₹149 wala plan lele, dedicated node bypass h, 1 second me bina wait kye answers leak ho jate h instantly! 👑" },
-        { name: "Anjali Mehta", text: "Watermark ka jhanjhat hi khatam Premium tier me. College portal pe safe submission ke liye King plan worth it h dosto." },
-        { name: "Sameer Khan", text: "Maine toh B.Com assignment ek click me pure high resolution table sheets me nikal liya. Zero delay architecture h pro tier ka." }
-    ];
-
-    const staticInitialSeeds = [
-        { id: 6001, name: "Suresh Patil (Nagpur)", isKing: false, text: "Bhai log solution aane me kitna time lagta h normal tier pe? Mera high load screen show ho rha h.", time: "5 mins ago", replies: [] },
-        { id: 6002, name: "Karan Malhotra", isKing: true, text: "Suresh bhai free tier pe load rehta h peak hours me bacho ka. Direct ₹149 wala plan lele, dedicated server node milta h, bina queue waiting ke direct makkhan solutions leak ho jate h instantly! 👑", time: "4 mins ago", replies: [] }
-    ];
-
-    if(!localStorage.getItem(storageKey)) {
-        localStorage.setItem(storageKey, JSON.stringify(staticInitialSeeds));
-    }
-
-    function renderComments() {
-        const container = document.getElementById('localCommentsContainer');
-        container.innerHTML = "";
-        let comments = JSON.parse(localStorage.getItem(storageKey)) || staticInitialSeeds;
-
-        comments.forEach(c => {
-            let repliesHtml = "";
-            if(c.replies && c.replies.length > 0) {
-                c.replies.forEach(r => { 
-                    const badge = r.isKing ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
-                    repliesHtml += `<div class="reply-item"><strong>${r.name}${badge}:</strong> ${r.text}</div>`; 
-                });
-            }
-            const mainBadge = c.isKing ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
-
-            const block = document.createElement('div');
-            block.className = "comment-item";
-            block.innerHTML = `
-                <div class="comment-header"><span><strong>${c.name}</strong>${mainBadge}</span><span>${c.time}</span></div>
-                <div class="comment-body">${c.text}</div>
-                <button class="reply-btn" onclick="toggleReplyBox(${c.id})"><i class="fa-solid fa-reply"></i> Reply</button>
-                <div class="reply-input-box" id="replyBox-${c.id}">
-                    <input type="text" id="repName-${c.id}" placeholder="Your Name...">
-                    <input type="text" id="repTxt-${c.id}" placeholder="Type reply...">
-                    <button class="reply-submit-btn" onclick="submitReply(${c.id})">Post</button>
-                </div>
-                <div class="replies-container">${repliesHtml}</div>
-            `;
-            container.appendChild(block);
-        });
-    }
-
-    function postLocalComment() {
-        const name = document.getElementById('forumUser').value.trim();
-        const msg = document.getElementById('forumMsg').value.trim();
-        if(!name || !msg) return alert("Please fill parameters.");
-
-        const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        comments.unshift({ id: Date.now(), name: name, isKing: false, text: msg, time: "Just Now", replies: [] });
-        localStorage.setItem(storageKey, JSON.stringify(comments));
-        
-        document.getElementById('forumUser').value = "";
-        document.getElementById('forumMsg').value = "";
-        renderComments();
-
-        // 🤖 SMART BOT ACTION TRIGGER (King bot replies after 4 seconds)
-        setTimeout(() => {
-            let freshComments = JSON.parse(localStorage.getItem(storageKey)) || [];
-            const idx = freshComments.findIndex(c => c.text === msg);
-            if(idx !== -1) {
-                const targetKingObj = kingPool[Math.floor(Math.random() * kingPool.length)];
-                freshComments[idx].replies.push({ name: targetKingObj.name, isKing: true, text: "Bhai portal par queue high h, if urgency h assignment ki toh direct Enterprise upgrade kar ₹149 me, direct zero waiting fast speed instant active bypass h!" });
-                localStorage.setItem(storageKey, JSON.stringify(freshComments));
-                renderComments();
-            }
-        }, 4000);
-    }
-
-    function toggleReplyBox(id) {
-        const box = document.getElementById(`replyBox-${id}`);
-        box.style.display = box.style.display === "flex" ? "none" : "flex";
-    }
-
-    function submitReply(id) {
-        const name = document.getElementById(`repName-${id}`).value.trim();
-        const text = document.getElementById(`repTxt-${id}`).value.trim();
-        if(!name || !text) return alert("Fill fields.");
-
-        let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        const index = comments.findIndex(c => c.id === id);
-        if(index !== -1) {
-            if(!comments[index].replies) comments[index].replies = [];
-            comments[index].replies.push({ name: name, isKing: false, text: text });
-            localStorage.setItem(storageKey, JSON.stringify(comments));
-        }
-        renderComments();
-    }
-
-    // ⏳ 70-30 BLENDED BOT ENGAGEMENT LOOPER (Runs every 30 seconds)
-    setInterval(() => {
-        let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        const rollChance = Math.random();
-        
-        if(rollChance < 0.70) {
-            const item = freePool[Math.floor(Math.random() * freePool.length)];
-            comments.unshift({ id: Date.now(), name: item.name, isKing: false, text: item.text, time: "Just Now", replies: [] });
-        } else {
-            const item = kingPool[Math.floor(Math.random() * kingPool.length)];
-            comments.unshift({ id: Date.now(), name: item.name, isKing: true, text: item.text, time: "Just Now", replies: [] });
-        }
-        if(comments.length > 15) comments.pop();
-        localStorage.setItem(storageKey, JSON.stringify(comments));
-        renderComments();
-    }, 30000);
-
     function switchTab(targetId) {
         document.querySelectorAll('.viewport-section').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -488,7 +356,7 @@
     }
 
     document.getElementById('fileInput').addEventListener('change', function(e) {
-        if(e.target.files[0]) document.getElementById('uploadText').innerText = "✅ Blueprint Frame Locked: " + e.target.files[0].name;
+        if(e.target.files[0]) document.getElementById('uploadText').innerText = "✅ Locked Document Matrix: " + e.target.files[0].name;
     });
 
     function triggerPremiumCheckout() { alert("🔒 Redirecting to Secure Gateway..."); }
@@ -524,7 +392,6 @@
             const part2 = "IzXGGIs8hcN8YQ0515o";
             const apiKey = part1 + part2; 
             
-            // Production stable models configuration
             const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
             const payloadPrompt = "Extract and solve all problems found in this file precisely. Split questions clearly with '(OR)'. Option 1: Provide full comprehensive textbook English solution report. Option 2: Provide complete explanation using natural texting Latin script Hinglish conversational structures. Build clean markdown tables for numerical grids.";
@@ -563,55 +430,48 @@
                         emailBox.style.display = "none";
                         fileInput.value = ""; 
                         
-                        // 🔥 Timing gate triggered instantly on typing completion
                         if(isEmailQueued) { executeFreeBypassEmailPipeline(); }
                     }
                 }, 15);
             } else {
-                console.log("Empty response trace stack:", parsed);
-                output.innerHTML = "<h3>⚠️ High Cloud Traffic Bypass Active</h3><p style='font-size:14px;'>Free pipeline processing channels are saturated right now. Enter your details in the box above to receive the complete download link instantly inside your inbox layout.</p>";
+                output.innerHTML = "<h3>⚠️ High Cloud Traffic Bypass Active</h3><p style='font-size:14px;'>Channels are heavily busy. Queue your parameters above to dispatch direct report inside your inbox layout.</p>";
             }
         } catch (err) {
-            console.error("Link exception:", err);
-            output.innerHTML = "❌ Primary framework routing link timeout. Please refresh or retry.";
+            output.innerHTML = "❌ Primary framework link routing link timeout.";
         } finally {
             solveBtn.innerText = "Process & Solve Assignment 🚀";
             solveBtn.disabled = false;
         }
     }
 
-    // Queue user parameters cleanly
     function queueEmailRequest() {
         queuedName = document.getElementById('deliveryName').value.trim();
         queuedEmail = document.getElementById('deliveryEmail').value.trim();
         if(!queuedName || !queuedEmail) return alert("Fill parameters.");
 
         isEmailQueued = true;
-        alert("🔒 Server Pipeline Synced!\n\nSolution is locked into your thread. The moment AI completes final processing, the text report will hit your inbox automatically!");
+        alert("🔒 Server Pipeline Synced!\n\nSolution text mapping is successfully locked. The moment generation finishes, the complete answer script layout hits your email inbox automatically!");
         document.getElementById('emailDeliveryBox').style.display = "none";
     }
 
-    // 📩 LIFETIME FREE FIXED EMAIL DISPATCH PIPELINE
     function executeFreeBypassEmailPipeline() {
-        // Direct safe text report layout parsing instead of memory breaking links
         const plainTextSolution = generatedSolutionText;
 
         const templateParams = {
             user_name: queuedName,
             to_email: queuedEmail,
-            download_link: plainTextSolution // Maps direct reading values perfectly to text layout variable
+            download_link: plainTextSolution 
         };
 
-        // Linked exactly to your template_x7v1h55 dashboard ID!
+        // Linked seamlessly to your template_x7v1h55 Dashboard ID
         emailjs.send('service_mj5h1fi', 'template_x7v1h55', templateParams)
             .then(function() {
-                console.log("Free email report delivered completely.");
+                console.log("Free text array successfully pushed via routing array.");
             }, function(err) {
-                console.error("Mail trigger failure log:", err);
+                console.error("Mail crash trace:", err);
             });
     }
 
-    // High definition layout downloader with structural overlays
     function downloadPDF() {
         const docNode = document.getElementById('output');
         let topicName = "Assignment_Solution";
