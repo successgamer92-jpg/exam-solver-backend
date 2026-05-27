@@ -65,7 +65,7 @@
 
         .main-wrapper { max-width: 1050px; width: 100%; margin: 30px auto; padding: 0 20px; box-sizing: border-box; }
 
-        /* Real-Time Analytics Headers */
+        /* Dynamic Counter Header Grid */
         .grid-stats { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 35px; }
         .stat-card { background: white; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 15px; }
         .stat-icon { font-size: 24px; color: #2563eb; background: #eff6ff; padding: 12px; border-radius: 10px; }
@@ -125,7 +125,7 @@
         }
         #output { background: #ffffff; padding: 45px; line-height: 1.8; font-size: 15px; position: relative; min-height: 200px; contain: layout; }
 
-        /* Luxury Layout Optimization for Generated PDF Report Content Inside DOM elements */
+        /* Luxury Layout System for Printed Sheets (Boring Look & Page Cuts Fixes Locked) */
         .pdf-page-container { border: 1px solid #bfdbfe; border-radius: 8px; padding: 30px; margin-bottom: 20px; background: #ffffff; position: relative; page-break-inside: avoid !important; }
         .pdf-header-tag { font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: 1px; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 20px; text-transform: uppercase; }
         
@@ -146,7 +146,7 @@
         .price-features li { margin-bottom: 10px; color: #475569; }
         .price-features i { color: #10b981; margin-right: 8px; }
 
-        /* 💬 GLOBAL FORUM HOOK WRAPPER WITH REPLIES */
+        /* 💬 PREMIUM BALANCED DISCUSSION LOUNGE */
         .forum-wrapper { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 30px; margin-top: 40px; }
         .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
@@ -160,7 +160,7 @@
         .comment-body { font-size: 14px; color: #334155; line-height: 1.5; }
         .reply-btn { background: none; border: none; color: #2563eb; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; padding: 0; }
         
-        /* 👑 THE KING BADGE STYLE ELEMENTS */
+        /* 👑 THE INSANELY ROYAL PREMIUM KING BADGE */
         .badge-king-tag {
             background: var(--king-gold); color: white; padding: 3px 8px; border-radius: 20px;
             font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;
@@ -189,6 +189,7 @@
         .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; }
         .footer-links a { color: #cbd5e1; text-decoration: none; font-weight: 500; }
         .footer-links a:hover { color: #3b82f6; }
+        .ad-banner { margin: 25px 0; padding: 15px; background: #ffffff; border: 1px dashed #e2e8f0; color: #94a3b8; font-size: 11px; border-radius: 8px; text-align: center; }
     </style>
 </head>
 <body>
@@ -199,7 +200,7 @@
 </div>
 
 <div class="navbar">
-    <div class="logo" onclick="switchTab('dashboard')">SmartSolve AI <span style="font-size: 12px; font-weight:400; color:#64748b;">v2.8 Master Bundle</span></div>
+    <div class="logo" onclick="switchTab('dashboard')">SmartSolve AI</div>
     <div class="nav-tabs">
         <button id="tab-dashboard" class="tab-btn active" onclick="switchTab('dashboard')"><i class="fa-solid fa-square-poll-horizontal"></i> Solver Engine</button>
         <button id="tab-pricing" class="tab-btn" onclick="switchTab('pricing')"><i class="fa-solid fa-gem"></i> Premium Tiers</button>
@@ -259,19 +260,13 @@
                 <input type="file" id="fileInput" accept="image/*,application/pdf">
             </div>
 
-            <div class="trust-row">
-                <span><i class="fa-solid fa-circle-check"></i> Verified Anti-Limit Bypass</span>
-                <span><i class="fa-solid fa-lock"></i> 100% Privacy Checked</span>
-                <span><i class="fa-solid fa-bolt"></i> Gemini 2.5 Engine Frame</span>
-            </div>
-
             <button id="solveBtn" class="action-btn" onclick="solvePaper()">Process & Solve Assignment 🚀</button>
             
             <div class="email-delivery-box" id="emailDeliveryBox">
                 <h4><i class="fa-solid fa-clock"></i> High Traffic Detected / Server Busy?</h4>
-                <p style="margin: 0; font-size: 13px; color: #92400e;">Don't wait for loading screen. Enter your email, and our server node will directly mail the generated <strong>HD Watermarked PDF Solution Document</strong> to your inbox the second it gets compiled!</p>
+                <p style="margin: 0; font-size: 13px; color: #92400e;">Don't wait for loading screen. Enter your email, and our server cloud will directly mail the direct download link of your <strong>HD Styled PDF Solution Report</strong> the second it gets compiled!</p>
                 <div class="email-input-row">
-                    <input type="text" id="deliveryName" placeholder="Your Profile Name...">
+                    <input type="text" id="deliveryName" placeholder="Enter your profile name...">
                     <input type="email" id="deliveryEmail" placeholder="yourname@gmail.com...">
                     <button class="email-submit-btn" onclick="queueEmailRequest()">Send PDF to Mail 📩</button>
                 </div>
@@ -315,8 +310,8 @@
         <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Feedback Community</div>
         
         <div class="feedback-input-group">
-            <input type="text" id="forumUser" placeholder="Enter your handle name (e.g., Aman Sharma)...">
-            <textarea id="forumMsg" placeholder="Type assignment message suggestions or feedback blocks..."></textarea>
+            <input type="text" id="forumUser" placeholder="Enter your name (e.g., Aman Sharma)...">
+            <textarea id="forumMsg" placeholder="Type your assignment feedback or chat reply here..."></textarea>
             <button class="feedback-submit-btn" onclick="postLocalComment()">Post Comment 🚀</button>
         </div>
 
@@ -334,7 +329,7 @@
 </div>
 
 <script>
-    // 🔑 INITIALIZE EMAILJS WITH AUTH KEY
+    // 🔑 INITIALIZE EMAILJS
     (function() { emailjs.init("XFENv0eFvxyBUOBGn"); })();
 
     let generatedSolutionText = ""; 
@@ -342,7 +337,7 @@
     let queuedName = "";
     let queuedEmail = "";
 
-    // ⏳ ANTI-RESET MATHEMATICAL PRINTED CALCULATOR ENGINE (Hamesha badhega, kabhi kam nhi hoga)
+    // ⏳ ANTI-RESET MATHEMATICAL CONTINUOUS PRINT CALCULATOR
     const epochStart = 1716800000000; 
     function updateCounter() {
         const timeDiff = Date.now() - epochStart;
@@ -365,27 +360,26 @@
         popupElement.style.left = '20px';
         setTimeout(() => { popupElement.style.left = '-400px'; }, 5000);
     }
-    setInterval(triggerNextProofNotice, 16000);
+    setInterval(triggerNextProofNotice, 15000);
 
-    // 💬 🚀 UNIQUE 70-30 MIX RATIO HARDENED FORUM SYSTEM WITH CONVERSION BOTS
-    const storageKey = 'smartsolve_balanced_lounge_v25';
+    // 💬 AUTOMATIC COMMENT INJECTION FRAMEWORK
+    const storageKey = 'smartsolve_king_lounge_v29';
     
     const freePool = [
-        { name: "Suresh Patil (Nagpur)", text: "Bhai log solution aane me kitna time lagta h normal browser pe? Mera processing dikha rha h." },
-        { name: "Vikram Malhotra", text: "Physics calculus ke numerical standard matches perfectly. ChatGPT upload caps are super annoying." },
-        { name: "Nisha Poddar (Kolkata)", text: "Hinglish output layout bohot helpful h, options read karne me maza aata h, copy book vibes lagti h ekdum." },
-        { name: "Divya Teja", text: "Assignment table configuration print standard solid h, direct scan frames clean load ho gaye." }
+        { name: "Suresh Patil (Nagpur)", text: "Bhai log solution aane me kitna time lagta h normal browser pe? Mera high server load screen dikha rha h." },
+        { name: "Vikram Malhotra", text: "Physics calculus ke numerical standard matches perfectly. ChatGPT file upload limits are boring." },
+        { name: "Nisha Poddar (Kolkata)", text: "Hinglish output layout bohot helpful h, options read karne me maza aata h, boring textbook style nahi h." }
     ];
 
     const kingPool = [
-        { name: "Karan Malhotra", text: "Suresh bhai free tier pe load rehta h peak hours me. Direct ₹149 wala plan lele, dedicated node bypass h, 1 second me bina wait kye answers leak ho jate h! 👑" },
+        { name: "Karan Malhotra", text: "Suresh bhai free tier pe load rehta h peak hours me bacho ka. Direct ₹149 wala plan lele, dedicated node bypass h, 1 second me bina wait kye answers leak ho jate h instantly! 👑" },
         { name: "Anjali Mehta", text: "Watermark ka jhanjhat hi khatam Premium tier me. College portal pe safe submission ke liye King plan worth it h dosto." },
         { name: "Sameer Khan", text: "Maine toh B.Com assignment ek click me pure high resolution table sheets me nikal liya. Zero delay architecture h pro tier ka." }
     ];
 
     const staticInitialSeeds = [
-        { id: 5001, name: "Suresh Patil (Nagpur)", isKing: false, text: "Bhai log solution aane me kitna time lagta h normal tier pe? Mera high load screen show ho rha h.", time: "2 mins ago", replies: [] },
-        { id: 5002, name: "Karan Malhotra", isKing: true, text: "Suresh bhai free tier pe load rehta h peak hours me bacho ka. Direct ₹149 wala plan lele, dedicated server node milta h, bina queue waiting ke direct makkhan solutions leak ho jate h instantly! 👑", time: "1 min ago", replies: [] }
+        { id: 6001, name: "Suresh Patil (Nagpur)", isKing: false, text: "Bhai log solution aane me kitna time lagta h normal tier pe? Mera high load screen show ho rha h.", time: "5 mins ago", replies: [] },
+        { id: 6002, name: "Karan Malhotra", isKing: true, text: "Suresh bhai free tier pe load rehta h peak hours me bacho ka. Direct ₹149 wala plan lele, dedicated server node milta h, bina queue waiting ke direct makkhan solutions leak ho jate h instantly! 👑", time: "4 mins ago", replies: [] }
     ];
 
     if(!localStorage.getItem(storageKey)) {
@@ -427,7 +421,7 @@
     function postLocalComment() {
         const name = document.getElementById('forumUser').value.trim();
         const msg = document.getElementById('forumMsg').value.trim();
-        if(!name || !msg) return alert("Fill parameters.");
+        if(!name || !msg) return alert("Please fill parameters.");
 
         const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
         comments.unshift({ id: Date.now(), name: name, isKing: false, text: msg, time: "Just Now", replies: [] });
@@ -437,13 +431,13 @@
         document.getElementById('forumMsg').value = "";
         renderComments();
 
-        // 🤖 DIRECT 4 SECONDS KING REPLY TRIGGER FRAME
+        // 🤖 SMART BOT ACTION TRIGGER (King bot replies after 4 seconds)
         setTimeout(() => {
             let freshComments = JSON.parse(localStorage.getItem(storageKey)) || [];
             const idx = freshComments.findIndex(c => c.text === msg);
             if(idx !== -1) {
                 const targetKingObj = kingPool[Math.floor(Math.random() * kingPool.length)];
-                freshComments[idx].replies.push({ name: targetKingObj.name, isKing: true, text: "Bhai load matrix high lag rha h portal pe, if urgency h assignment submission ki toh direct Pro tier upgrade karo ₹149 me, direct zero waiting bypass milega!" });
+                freshComments[idx].replies.push({ name: targetKingObj.name, isKing: true, text: "Bhai portal par queue high h, if urgency h assignment ki toh direct Enterprise upgrade kar ₹149 me, direct zero waiting fast speed instant active bypass h!" });
                 localStorage.setItem(storageKey, JSON.stringify(freshComments));
                 renderComments();
             }
@@ -470,17 +464,15 @@
         renderComments();
     }
 
-    // ⏳ 70-30 BALANCED TRAFFIC LOOP INCREMENTOR (Injects blended variations every 30 seconds)
+    // ⏳ 70-30 BLENDED BOT ENGAGEMENT LOOPER (Runs every 30 seconds)
     setInterval(() => {
         let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
         const rollChance = Math.random();
         
         if(rollChance < 0.70) {
-            // Normal free seed injection
             const item = freePool[Math.floor(Math.random() * freePool.length)];
             comments.unshift({ id: Date.now(), name: item.name, isKing: false, text: item.text, time: "Just Now", replies: [] });
         } else {
-            // Gold King seed injection
             const item = kingPool[Math.floor(Math.random() * kingPool.length)];
             comments.unshift({ id: Date.now(), name: item.name, isKing: true, text: item.text, time: "Just Now", replies: [] });
         }
@@ -488,8 +480,6 @@
         localStorage.setItem(storageKey, JSON.stringify(comments));
         renderComments();
     }, 30000);
-
-    window.onload = renderComments;
 
     function switchTab(targetId) {
         document.querySelectorAll('.viewport-section').forEach(s => s.classList.remove('active'));
@@ -504,7 +494,7 @@
 
     function triggerPremiumCheckout() { alert("🔒 Redirecting to Secure Gateway..."); }
 
-    // 🧠 CORE LIVE STEP-BY-STEP SOLVER + EMAIL DELIVER CONTROLLER
+    // 🧠 CORE LIVE STEP-BY-STEP AI SOLVER ENGINE
     async function solvePaper() {
         const fileInput = document.getElementById('fileInput');
         const outputWrapper = document.getElementById('outputWrapper');
@@ -518,7 +508,7 @@
         solveBtn.disabled = true;
         document.getElementById('downloadBtn').style.display = "none";
         outputWrapper.style.display = "block";
-        output.innerHTML = "<h3>⚙️ Decomposing Raw Image Blueprint Elements...</h3><p style='color:#64748b; font-size:13px;'>Applying OCR matrix layers on background node server.</p>";
+        output.innerHTML = "<h3>⚙️ Decomposing Raw Image Blueprint Elements...</h3><p style='color:#64748b; font-size:13px;'>Applying anti-shake text layers on cloud node server.</p>";
         
         generatedSolutionText = ""; 
         isEmailQueued = false;
@@ -536,7 +526,7 @@
             const apiKey = part1 + part2; 
             const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-            const payloadPrompt = "Extract and solve all problems found in this file precisely. Split questions clearly with '(OR)'. Option 1: Comprehensive formal English textbook vocabulary solution report frame block. Option 2: Casual Latin script text messaging Hinglish conversational explanation report block. Format data comparisons inside standard HTML markdown grid tables.";
+            const payloadPrompt = "Extract and solve all problems found in this file precisely. Split questions clearly with '(OR)'. Option 1: Provide full comprehensive textbook English solution report. Option 2: Provide complete explanation using natural texting Latin script Hinglish conversational structures. Build clean markdown tables for numerical grids.";
 
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -548,11 +538,10 @@
             if (parsed.candidates && parsed.candidates[0].content.parts[0].text) {
                 generatedSolutionText = parsed.candidates[0].content.parts[0].text;
                 
-                // Luxury Design Block Wrap Framework (Combats Boring Layout & Cuts)
                 const markdownHtml = marked.parse(generatedSolutionText);
                 const finalStyledStructure = `
                     <div class="pdf-page-container">
-                        <div class="pdf-header-tag">SMARTSOLVE AI PLATFORMS NETWORK • SECURE VERIFIED HUB</div>
+                        <div class="pdf-header-tag">SMARTSOLVE AI PLATFORMS NETWORK • PREMIUM EXPORT DATA SHEET</div>
                         ${markdownHtml}
                     </div>
                 `;
@@ -572,39 +561,37 @@
                         emailBox.style.display = "none";
                         fileInput.value = ""; 
                         
-                        // 🔔 QUEUED EMAIL TRIGGER CORE GATEWAY: Solution ready, trigger email with attachment now!
-                        if(isEmailQueued) { executeEmailAttachmentPipeline(); }
+                        // 🔥 TIMING GATE: File creation is complete, fire free email gateway link now!
+                        if(isEmailQueued) { executeFreeBypassEmailPipeline(); }
                     }
                 }, 15);
             } else {
-                output.innerHTML = "❌ AI Node Cap saturation. Queue execution failed.";
+                output.innerHTML = "❌ AI Node Cap saturation.";
             }
         } catch (err) {
-            output.innerHTML = "❌ Primary framework link degrade active.";
+            output.innerHTML = "❌ Connection link degraded.";
         } finally {
             solveBtn.innerText = "Process & Solve Assignment 🚀";
             solveBtn.disabled = false;
         }
     }
 
-    // Register User Queue Request (No early email execution)
+    // Queue user mail parameters securely
     function queueEmailRequest() {
         queuedName = document.getElementById('deliveryName').value.trim();
         queuedEmail = document.getElementById('deliveryEmail').value.trim();
-        if(!queuedName || !queuedEmail) return alert("Fill entry fields.");
+        if(!queuedName || !queuedEmail) return alert("Fill details.");
 
         isEmailQueued = true;
-        alert("🔒 Pipeline Locked Successfully!\n\nOur system will directly compile the watermark verification layers and automatically mail the generated HD PDF solution file to your inbox the second generation completes. You can keep browsing or wait!");
+        alert("🔒 Server Pipeline Synced!\n\nSolution link is locked into your thread. The moment AI completes final processing, a high-speed direct download link will hit your inbox automatically!");
         document.getElementById('emailDeliveryBox').style.display = "none";
     }
 
-    // 📩 THE HIGH STANDARD REAL BLOB BASE64 PDF ATTACHMENT DELIVERY PIPELINE
-    function executeEmailAttachmentPipeline() {
+    // 📩 SUBSCRIPTION RESTRICTION BYPASS COMPILATION PIPELINE
+    function executeFreeBypassEmailPipeline() {
         const docNode = document.getElementById('output');
         
-        // Dynamic custom layout watermark injector logic frame
         const watermark = document.createElement('div');
-        watermark.className = "pdf-watermark-overlay";
         watermark.style.position = 'absolute'; watermark.style.top = '0'; watermark.style.left = '0';
         watermark.style.width = '100%'; watermark.style.height = '100%'; watermark.style.pointerEvents = 'none';
         watermark.style.display = 'flex'; watermark.style.flexDirection = 'column';
@@ -617,35 +604,35 @@
         }
         docNode.appendChild(watermark);
 
-        const options = { margin: 12, filename: 'SmartSolve_AI_Report.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+        const options = { 
+            margin: 12, 
+            filename: 'SmartSolve_AI_Report.pdf', 
+            image: { type: 'jpeg', quality: 0.98 }, 
+            html2canvas: { scale: 2, useCORS: true, logging: false }, 
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+        };
 
-        // Output DOM compilation direct to Base64 Raw Data DataURI frame chunk
-        html2pdf().set(options).from(docNode).outputPdf('datauristring').then(function(pdfBase64String) {
-            docNode.removeChild(watermark); // Clear overlay from screen view layout node
-            
-            // Extracted secure base64 binary attachment block
-            const base64RawAttachment = pdfBase64String.split(',')[1];
+        // Render full styled layout direct into a data-uri representation string parameter array
+        html2pdf().set(options).from(docNode).outputPdf('datauristring').then(function(pdfDataUriString) {
+            docNode.removeChild(watermark); 
 
+            // Secure lifetime free parameters injection layout matrix
             const templateParams = {
                 user_name: queuedName,
                 to_email: queuedEmail,
-                // EmailJS parameter attachment mapping block configuration
-                content_attachment: {
-                    name: "SmartSolve_AI_Solution.pdf",
-                    data: base64RawAttachment
-                }
+                download_link: pdfDataUriString // Directly pushes data uri to EmailJS string variable channel
             };
 
             emailjs.send('service_mj5h1fi', 'template_4awofbe', templateParams)
                 .then(function() {
-                    console.log("SUCCESS! Attachment solution delivered smoothly.");
+                    console.log("Bypass mail routing complete.");
                 }, function(err) {
-                    console.error("Mailer reject code:", err);
+                    console.error("Mail routing reject:", err);
                 });
         });
     }
 
-    // Download Handler with luxury border overlays and clean margins
+    // Standard high definition layout downloader with structural overlays
     function downloadPDF() {
         const docNode = document.getElementById('output');
         let topicName = "Assignment_Solution";
