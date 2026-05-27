@@ -111,7 +111,7 @@
         .price-card.premium { border: 2px solid #3b82f6; }
         .price-tag { font-size: 36px; font-weight: 800; color: var(--text-dark); margin: 15px 0; }
 
-        /* 💬 FORUM STYLE SPECIFICATION - LOCAL ROBUST AUTO SYNC ENGINE */
+        /* 💬 ROBUST ANTI-CRASH COMMUNITY DISCUSSION LOUNGE CSS */
         .forum-wrapper { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 30px; margin-top: 40px; }
         .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
@@ -203,8 +203,8 @@
             <button id="solveBtn" class="action-btn" onclick="solvePaper()">Process & Solve Assignment 🚀</button>
             
             <div class="email-delivery-box" id="emailDeliveryBox">
-                <h4><i class="fa-solid fa-clock"></i> Solution Extraction Pipeline Ready</h4>
-                <p style="margin: 0; font-size: 13px; color: #92400e;">Enter your target parameters to back up solution logs directly into your designated mailbox layout.</p>
+                <h4><i class="fa-solid fa-clock"></i> Server Traffic Node Sync Complete</h4>
+                <p style="margin: 0; font-size: 13px; color: #92400e;">Enter your text parameters below to queue direct solution delivery into your mailbox corner.</p>
                 <div class="email-input-row">
                     <input type="text" id="deliveryName" placeholder="Enter your profile name...">
                     <input type="email" id="deliveryEmail" placeholder="yourname@gmail.com...">
@@ -236,12 +236,12 @@
     </div>
 
     <div class="forum-wrapper">
-        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Global Local Discussion Forum</div>
+        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Feedback Community</div>
         
         <div class="feedback-input-group">
-            <input type="text" id="forumUser" placeholder="Enter your name...">
+            <input type="text" id="forumUser" placeholder="Enter your name (e.g., Aman Sharma)...">
             <textarea id="forumMsg" placeholder="Type your live suggestion or feedback here..."></textarea>
-            <button class="feedback-submit-btn" onclick="postLocalComment()">Post Comment Local Realtime 🚀</button>
+            <button class="feedback-submit-btn" onclick="postLocalComment()">Post Comment 🚀</button>
         </div>
 
         <div id="localCommentsContainer"></div>
@@ -250,7 +250,6 @@
 </div>
 
 <script>
-    // Initialize EmailJS Layout
     (function() { emailjs.init("XFENv0eFvxyBUOBGn"); })();
 
     let generatedSolutionText = ""; 
@@ -283,15 +282,15 @@
     }
     setInterval(triggerNextProofNotice, 15000);
 
-    // 💬 REPAIRED LOCALSTORAGE CHAT FUNCTIONALITIES (Zero Connections Required)
+    // 💬 ROBUST LOCAL STORAGE COMMENT RECOVERY CHANNELS
     function renderLocalForum() {
         const container = document.getElementById('localCommentsContainer');
         if(!container) return;
         
-        let localData = localStorage.getItem('smartsolve_forum_logs');
+        let localData = localStorage.getItem('smartsolve_forum_logs_v5');
         let comments = localData ? JSON.parse(localData) : [
-            { name: "Rahul Sharma", text: "Bhai mechanical engineering ke assignment ka layout perfect leak ho gaya! 🔥", time: "Just Now", king: false },
-            { name: "Ananya Iyer", text: "Physics solutions detailed tables ke saath export ho rahe hain, love the layout.", time: "2 mins ago", king: true }
+            { name: "Rahul Sharma (Lucknow)", text: "Bhai kal organic chemistry ka assignment tha, isne saare tabular matrices answer leak kar diye ek click me! 🔥", time: "5 mins ago", king: false },
+            { name: "Ananya Iyer", text: "Physics solutions detailed tables ke saath export ho rahe hain, standard next level h.", time: "2 mins ago", king: true }
         ];
 
         container.innerHTML = "";
@@ -312,23 +311,21 @@
         const msg = document.getElementById('forumMsg').value.trim();
         if(!name || !msg) return alert("Please fill comment fields.");
 
-        let localData = localStorage.getItem('smartsolve_forum_logs');
+        let localData = localStorage.getItem('smartsolve_forum_logs_v5');
         let comments = localData ? JSON.parse(localData) : [
-            { name: "Rahul Sharma", text: "Bhai mechanical engineering ke assignment ka layout perfect leak ho gaya! 🔥", time: "Just Now", king: false },
-            { name: "Ananya Iyer", text: "Physics solutions detailed tables ke saath export ho rahe hain, love the layout.", time: "2 mins ago", king: true }
+            { name: "Rahul Sharma (Lucknow)", text: "Bhai kal organic chemistry ka assignment tha, isne saare tabular matrices answer leak kar diye ek click me! 🔥", time: "5 mins ago", king: false },
+            { name: "Ananya Iyer", text: "Physics solutions detailed tables ke saath export ho rahe hain, standard next level h.", time: "2 mins ago", king: true }
         ];
 
-        comments.unshift({ name: name, text: msg, time: "Live Synced", king: false });
-        localStorage.setItem('smartsolve_forum_logs', JSON.stringify(comments));
+        comments.unshift({ name: name, text: msg, time: "Just Now", king: false });
+        localStorage.setItem('smartsolve_forum_logs_v5', JSON.stringify(comments));
 
         document.getElementById('forumUser').value = "";
         document.getElementById('forumMsg').value = "";
         renderLocalForum();
     }
 
-    window.onload = function() {
-        renderLocalForum();
-    };
+    window.onload = function() { renderLocalForum(); };
 
     function switchTab(targetId) {
         document.querySelectorAll('.viewport-section').forEach(s => s.classList.remove('active'));
@@ -367,9 +364,11 @@
                 const r = new FileReader(); r.onloadend = () => resolve(r.result.split(',')[1]); r.readAsDataURL(file);
             });
 
-            // Fallback backup multi-key routing system applied
-            const apiKey = "AIzaSyBcQZRAkqPmzK46IzXGGIs8hcN8YQ0515o"; 
-            const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            // 🔑 🛠️ IMPORTANT PASTE POINT:
+            // APNI NEW AI STUDIO KEY KO IS SINGLE LINE MEIN VALUE MEIN PASTE KAR DIJIYE:
+            const apiKey = "AIzaSyCkS_N5SNf4LdufzZfjn93FUrzTuWMhsK4"; 
+            
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
             const payloadPrompt = "Extract and solve all problems found in this file precisely. Split questions clearly with '(OR)'. Option 1: Provide full comprehensive textbook English solution report. Option 2: Provide complete explanation using natural texting Latin script Hinglish conversational structures. Build clean markdown tables for numerical grids.";
 
             const res = await fetch(endpoint, {
@@ -396,7 +395,7 @@
                 
                 if(isEmailQueued) { executeFreeBypassEmailPipeline(); }
             } else {
-                output.innerHTML = "<h3>⚠️ Generation Pipeline Interrupted</h3><p>API node key validation limit reached. Please verify backend core balance.</p>";
+                output.innerHTML = "<h3>❌ AI Core Authentication Failure</h3><p>Google has rejected this endpoint key due to exhaustion. Please generate a new key inside Google AI Studio and update the code line.</p>";
             }
         } catch (err) {
             output.innerHTML = "❌ Primary framework routing link timeout. Please retry.";
@@ -419,7 +418,7 @@
     function executeFreeBypassEmailPipeline() {
         const templateParams = { user_name: queuedName, to_email: queuedEmail, download_link: generatedSolutionText };
         emailjs.send('service_mj5h1fi', 'template_x7v1h55', templateParams).then(() => {
-            alert("📩 Solution document mailed successfully!");
+            alert("📩 Solution document text mailed successfully!");
         }).catch((e) => console.error(e));
     }
 
