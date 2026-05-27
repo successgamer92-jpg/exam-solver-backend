@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         :root {
@@ -75,19 +74,15 @@
         .usp-table th, .usp-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         .usp-table th { color: #64748b; font-weight: 600; }
         .badge-pro { background: #dcfce7; color: #15803d; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
-        .badge-noob { background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; }
 
         .upload-area { border: 2px dashed #cbd5e1; padding: 45px 20px; border-radius: 14px; background: #fafafa; cursor: pointer; text-align: center; margin-bottom: 25px; transition: background 0.2s; }
         .upload-area:hover { border-color: #3b82f6; background: #f1f5f9; }
         .upload-icon { font-size: 40px; color: #94a3b8; margin-bottom: 12px; }
         .upload-title { font-size: 16px; font-weight: 600; color: #334155; display: block; }
-        .upload-sub { font-size: 13px; color: #64748b; margin-top: 5px; display: block; }
         #fileInput { display: none; }
 
         .action-btn { color: white; border: none; padding: 15px 30px; font-size: 16px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; margin-bottom: 15px; transition: transform 0.1s ease; }
-        .action-btn:active { transform: scale(0.99); }
         #solveBtn { background: var(--success-gradient); }
-        #solveBtn:disabled { background: #cbd5e1; cursor: not-allowed; }
         #downloadBtn { background: var(--brand-gradient); display: none; }
 
         .email-delivery-box { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 20px; margin: 20px 0; display: none; }
@@ -99,62 +94,54 @@
         #outputWrapper { 
             margin-top: 35px; max-height: 600px; overflow-y: auto; border-radius: 12px; 
             border: 1px solid #cbd5e1; border-top: 10px solid #1e3a8a; scroll-behavior: smooth;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         #output { background: #ffffff; padding: 45px; line-height: 1.8; font-size: 15px; position: relative; min-height: 200px; contain: layout; }
 
-        /* Luxury Layout Sheet Margins Setup */
         .pdf-page-container { border: 1px solid #bfdbfe; border-radius: 8px; padding: 30px; margin-bottom: 20px; background: #ffffff; position: relative; page-break-inside: avoid !important; }
         .pdf-header-tag { font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: 1px; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 20px; text-transform: uppercase; }
         
-        #output h1 { color: #1e3a8a; font-size: 24px; margin-top: 5px; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px; page-break-after: avoid; }
-        #output h2 { color: #2563eb; font-size: 19px; margin-top: 20px; page-break-after: avoid; }
-        #output p, #output li { font-size: 14.5px; color: #334155; text-align: justify; }
-        #output table { width: 100%; border-collapse: collapse; margin: 20px 0; page-break-inside: avoid !important; }
-        #output th { background-color: #1e3a8a; color: white; padding: 10px; font-size: 13px; }
-        #output td { padding: 10px; border: 1px solid #cbd5e1; font-size: 13px; }
-        #output tr:nth-child(even) { background-color: #f8fafc; }
+        #output h1 { color: #1e3a8a; font-size: 24px; margin-top: 5px; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px; }
+        #output h2 { color: #2563eb; font-size: 19px; margin-top: 20px; }
+        #output table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        #output th { background-color: #1e3a8a; color: white; padding: 10px; }
+        #output td { padding: 10px; border: 1px solid #cbd5e1; }
 
         .pricing-grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 20px; }
-        .price-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; text-align: center; position: relative; }
-        .price-card.premium { border: 2px solid #3b82f6; box-shadow: 0 10px 20px rgba(59,130,246,0.06); }
+        .price-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; text-align: center; }
+        .price-card.premium { border: 2px solid #3b82f6; }
         .price-tag { font-size: 36px; font-weight: 800; color: var(--text-dark); margin: 15px 0; }
 
-        /* Built-In Synchronized Chat Lounge UI CSS */
+        /* 💬 CLEAN STABLE REALTIME FORUM FRAMEWORK OVERRIDES */
         .forum-wrapper { background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 30px; margin-top: 40px; }
         .forum-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-        .feedback-input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-        .feedback-input-group input, .feedback-input-group textarea { width: 100%; border: 1px solid #cbd5e1; padding: 12px; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 14px; }
-        .feedback-input-group textarea { height: 80px; resize: vertical; }
-        .feedback-submit-btn { background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; align-self: flex-start; }
-        
-        #localCommentsContainer { max-height: 550px; overflow-y: auto; padding-right: 5px; }
-        .comment-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 15px; }
-        .comment-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: 700; align-items: center; }
-        .comment-body { font-size: 14px; color: #334155; line-height: 1.5; }
-        .reply-btn { background: none; border: none; color: #2563eb; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; padding: 0; }
         
         .badge-king-tag {
             background: var(--king-gold); color: white; padding: 3px 8px; border-radius: 20px;
             font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;
-            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3); margin-left: 6px; letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3); margin-left: 6px;
         }
-        .replies-container { margin-left: 25px; border-left: 2px dashed #cbd5e1; padding-left: 15px; margin-top: 12px; }
-        .reply-item { background: white; border: 1px solid #e2e8f0; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; }
-        
-        .reply-input-box { display: none; margin-top: 12px; gap: 8px; }
-        .reply-input-box input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-        .reply-submit-btn { background: #475569; color: white; border: none; padding: 0 16px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600; }
+
+        /* Anti-crash container settings for the verified global comment network */
+        #commento { width: 100%; min-height: 300px; background: transparent; }
 
         #socialProofNotice {
             position: fixed; bottom: 20px; left: -400px; background: white; border: 1px solid #e2e8f0;
             padding: 12px 20px; border-radius: 12px; box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
             display: flex; align-items: center; gap: 12px; z-index: 9999;
-            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: left 0.5s ease;
         }
-        .proof-avatar { width: 36px; height: 36px; background: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .proof-avatar { width: 36px; height: 36px; background: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
         .proof-text { font-size: 12px; color: #475569; line-height: 1.4; }
     </style>
+
+    <script src="https://utteranc.es/client.js"
+            repo="FarhanKhanLucknow/smartsolve-discussion-lounge"
+            issue-term="pathname"
+            label="student_lounge"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
 </head>
 <body>
 
@@ -197,14 +184,12 @@
                 <thead>
                     <tr>
                         <th>Platform Capabilities</th>
-                        <th>Standard AI Tools (ChatGPT/Gemini)</th>
                         <th>SmartSolve Premium Hub</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Daily Photo/File Limits</strong></td>
-                        <td><span class="badge-noob">Max 3 to 5 uploads (Then Blocked)</span></td>
                         <td><span class="badge-pro">100% Unlimited Forever Free</span></td>
                     </tr>
                 </tbody>
@@ -222,7 +207,7 @@
             
             <div class="email-delivery-box" id="emailDeliveryBox">
                 <h4><i class="fa-solid fa-clock"></i> High Traffic Detected / Server Busy?</h4>
-                <p style="margin: 0; font-size: 13px; color: #92400e;">Enter your email, and our cloud node will automatically mail the complete solution text report once compilation finishes!</p>
+                <p style="margin: 0; font-size: 13px; color: #92400e;">Enter your email below to receive the complete solution text report instantly inside your inbox layout.</p>
                 <div class="email-input-row">
                     <input type="text" id="deliveryName" placeholder="Enter your profile name...">
                     <input type="email" id="deliveryEmail" placeholder="yourname@gmail.com...">
@@ -248,27 +233,21 @@
             <div class="price-card premium">
                 <h3>Enterprise Pro Executive <span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span></h3>
                 <div class="price-tag">₹149</div>
-                <button class="action-btn" onclick="alert('🔒 Redirecting...')">Upgrade Enterprise Portal</button>
+                <button class="action-btn" onclick="alert('🔒 Redirecting to Secured Gateway...')">Upgrade Enterprise Portal</button>
             </div>
         </div>
     </div>
 
     <div class="forum-wrapper">
-        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Global Cross-Device Chat</div>
+        <div class="forum-title"><i class="fa-solid fa-comments" style="color:#3b82f6;"></i> Live Student Lounge & Global Cross-Device Discussion Forum</div>
         
-        <div class="feedback-input-group">
-            <input type="text" id="forumUser" placeholder="Enter your handle name...">
-            <textarea id="forumMsg" placeholder="Type your suggestion or feedback here..."></textarea>
-            <button class="feedback-submit-btn" onclick="postGlobalComment()">Post Comment Realtime 🚀</button>
-        </div>
-
-        <div id="localCommentsContainer"></div>
+        <div class="utterances"></div>
     </div>
 
 </div>
 
 <script>
-    // Initialize EmailJS
+    // Initialize EmailJS Layout Tokens
     (function() { emailjs.init("XFENv0eFvxyBUOBGn"); })();
 
     let generatedSolutionText = ""; 
@@ -276,7 +255,7 @@
     let queuedName = "";
     let queuedEmail = "";
 
-    // ⏳ REAL-TIME DYNAMIC CALCULATION COUNTER (Day, Month, Year Continual Progress)
+    // ⏳ REAL-TIME DYNAMIC CALCULATION COUNTER
     const epochStart = 1716800000000; 
     function updateCounter() {
         const timeDiff = Date.now() - epochStart;
@@ -300,112 +279,6 @@
         setTimeout(() => { popupElement.style.left = '-400px'; }, 5000);
     }
     setInterval(triggerNextProofNotice, 15000);
-
-    // 🔑 ⚡ SUPABASE PRODUCTION MATRIX CREDENTIALS - ABSOLUTE FIXED AND VERIFIED CHARACTER STRINGS
-    const sbUrl = "https://gqfupfcrgctscyruuwhr.supabase.co";
-    const sbKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxZnVwZmNyZ2N0c2N5cnV1d2hyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY4Mzg0MDAsImV4cCI6MjAzMjQwMDAwMH0.3_X9z7N-kZ9X4r7v8w9X0y1A2B3C4D5E6F7G8H9I0J1"; 
-    const _supabase = window.supabase.createClient(sbUrl, sbKey);
-
-    const conversionBotsPool = [
-        "Bhai paid upgrade le lo ₹149 me, direct dedicated channel aur watermark remove ka access milta h! 👑",
-        "Free tier standard se assignments loading processing hours me thoda time lagta h, Pro tier active karo direct zero waiting h.",
-        "Mera mechanical maths sheets analysis 1 second me leak ho gaya, text structures are awesome."
-    ];
-
-    // Fetch and render stream direct from remote public relation data rows
-    async function fetchAndRenderGlobalComments() {
-        const container = document.getElementById('localCommentsContainer');
-        if(!container) return;
-
-        const { data: comments, error } = await _supabase.from('student_lounge_forum').select('*').order('created_at', { ascending: false }).limit(25);
-        
-        if (error) {
-            console.error("Supabase Database connection dropped:", error);
-            return;
-        }
-
-        container.innerHTML = "";
-        comments.forEach(c => {
-            let repliesHtml = "";
-            if(c.replies_json) {
-                const parsedReplies = typeof c.replies_json === 'string' ? JSON.parse(c.replies_json) : c.replies_json;
-                parsedReplies.forEach(r => {
-                    const badge = r.isKing ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
-                    repliesHtml += `<div class="reply-item"><strong>${r.name}${badge}:</strong> ${r.text}</div>`;
-                });
-            }
-
-            const mainBadge = c.is_king ? `<span class="badge-king-tag"><i class="fa-solid fa-crown"></i> KING</span>` : '';
-            const block = document.createElement('div');
-            block.className = "comment-item";
-            block.innerHTML = `
-                <div class="comment-header"><span><strong>${c.user_name}</strong>${mainBadge}</span><span>Live</span></div>
-                <div class="comment-body">${c.comment_text}</div>
-                <button class="reply-btn" onclick="toggleReplyBox('${c.id}')"><i class="fa-solid fa-reply"></i> Reply</button>
-                <div class="reply-input-box" id="replyBox-${c.id}">
-                    <input type="text" id="repName-${c.id}" placeholder="Your Name...">
-                    <input type="text" id="repTxt-${c.id}" placeholder="Type reply...">
-                    <button class="reply-submit-btn" onclick="submitGlobalReply('${c.id}')">Post</button>
-                </div>
-                <div class="replies-container">${repliesHtml}</div>
-            `;
-            container.appendChild(block);
-        });
-    }
-
-    async function postGlobalComment() {
-        const name = document.getElementById('forumUser').value.trim();
-        const msg = document.getElementById('forumMsg').value.trim();
-        if(!name || !msg) return alert("Please fill fields.");
-
-        // Insert text straight into real remote multi-device synchronized tables
-        const { data, error } = await _supabase.from('student_lounge_forum').insert([{ user_name: name, comment_text: msg, is_king: false, replies_json: [] }]).select();
-
-        if(error) { 
-            console.error("Insert transaction failed:", error);
-            return alert("Database node connection busy. Please retry."); 
-        }
-
-        document.getElementById('forumUser').value = "";
-        document.getElementById('forumMsg').value = "";
-        await fetchAndRenderGlobalComments();
-
-        // 🤖 MULTI-DEVICE AUTOMATED ROBOT CONVERSION LOOP
-        const newlyInsertedRow = data[0];
-        setTimeout(async () => {
-            const botNames = ["Karan Malhotra", "Ishita Sharma", "Devansh Gupta"];
-            const selectedBotName = botNames[Math.floor(Math.random() * botNames.length)];
-            const selectedBotText = conversionBotsPool[Math.floor(Math.random() * conversionBotsPool.length)];
-
-            const newReplyObj = { name: selectedBotName, isKing: true, text: selectedBotText };
-            
-            await _supabase.from('student_lounge_forum').update({ replies_json: [newReplyObj] }).eq('id', newlyInsertedRow.id);
-            await fetchAndRenderGlobalComments();
-        }, 4000);
-    }
-
-    function toggleReplyBox(id) {
-        const box = document.getElementById(`replyBox-${id}`);
-        box.style.display = box.style.display === "flex" ? "none" : "flex";
-    }
-
-    async function submitGlobalReply(rowId) {
-        const name = document.getElementById(`repName-${rowId}`).value.trim();
-        const text = document.getElementById(`repTxt-${rowId}`).value.trim();
-        if(!name || !text) return alert("Fill fields.");
-
-        const { data } = await _supabase.from('student_lounge_forum').select('replies_json').eq('id', rowId).single();
-        let existingReplies = data?.replies_json ? (typeof data.replies_json === 'string' ? JSON.parse(data.replies_json) : data.replies_json) : [];
-        
-        existingReplies.push({ name: name, isKing: false, text: text });
-        await _supabase.from('student_lounge_forum').update({ replies_json: existingReplies }).eq('id', rowId);
-        
-        await fetchAndRenderGlobalComments();
-    }
-
-    // High performance synchronization loop (Updates frames every 4 seconds)
-    setInterval(fetchAndRenderGlobalComments, 4000);
-    window.onload = fetchAndRenderGlobalComments;
 
     function switchTab(targetId) {
         document.querySelectorAll('.viewport-section').forEach(s => s.classList.remove('active'));
@@ -460,31 +333,17 @@
                 generatedSolutionText = parsed.candidates[0].content.parts[0].text;
                 const markdownHtml = marked.parse(generatedSolutionText);
                 
-                const finalStyledStructure = `
+                output.innerHTML = `
                     <div class="pdf-page-container">
                         <div class="pdf-header-tag">SMARTSOLVE AI PLATFORMS NETWORK • PREMIUM EXPORT DATA SHEET</div>
                         ${markdownHtml}
                     </div>
                 `;
+                document.getElementById('downloadBtn').style.display = "block";
+                emailBox.style.display = "none";
+                fileInput.value = ""; 
                 
-                output.innerHTML = ""; 
-                let currentLen = 0;
-                const typingSpeed = 50; 
-                
-                const typeLoop = setInterval(() => {
-                    if (currentLen < finalStyledStructure.length) {
-                        currentLen += typingSpeed;
-                        output.innerHTML = finalStyledStructure.substring(0, currentLen);
-                        outputWrapper.scrollTop = outputWrapper.scrollHeight; 
-                    } else {
-                        clearInterval(typeLoop);
-                        document.getElementById('downloadBtn').style.display = "block";
-                        emailBox.style.display = "none";
-                        fileInput.value = ""; 
-                        
-                        if(isEmailQueued) { executeFreeBypassEmailPipeline(); }
-                    }
-                }, 15);
+                if(isEmailQueued) { executeFreeBypassEmailPipeline(); }
             } else {
                 output.innerHTML = "<h3>⚠️ High Traffic Redirect</h3><p>Server nodes busy, please check details in your email queue block.</p>";
             }
@@ -510,7 +369,6 @@
         emailjs.send('service_mj5h1fi', 'template_x7v1h55', templateParams);
     }
 
-    // High definition layout downloader with structural overlays and background brand watermarks
     function downloadPDF() {
         const docNode = document.getElementById('output');
         let topicName = "Assignment_Solution";
